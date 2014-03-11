@@ -48,7 +48,11 @@
   <ItemGroup>
     <Compile Include="Entities\Affiliate.cs" />
     <Compile Include="Entities\Core\EntitiesContext.cs" />
+    <Compile Include="Entities\Core\EntityRepository.cs" />
     <Compile Include="Entities\Core\IEntity.cs" />
+    <Compile Include="Entities\Core\IEntityRepository.cs" />
+    <Compile Include="Entities\Core\IQueryableExtensions.cs" />
+    <Compile Include="Entities\Core\PaginatedList.cs" />
     <Compile Include="Entities\Roll.cs" />
     <Compile Include="Entities\Shipment.cs" />
     <Compile Include="Entities\ShipmentState.cs" />
