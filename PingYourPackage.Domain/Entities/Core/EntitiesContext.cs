@@ -7,7 +7,7 @@
     public class EntitiesContext : DbContext
     {
         public EntitiesContext()
-            : base("PingYourPackageHome")
+            : base("PingYourPackage")
         {
         }
         
