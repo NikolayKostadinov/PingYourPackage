@@ -1,0 +1,3 @@
+﻿namespace PingYourPackage.API.Config
+{
+}
