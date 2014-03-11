@@ -9,15 +9,14 @@
     {
         public static void Initialize(HttpConfiguration config)
         {
-            Initialize(config,
-            RegisterServices(new ContainerBuilder()));
+            Initialize(config, RegisterServices(new ContainerBuilder()));
         }
-        public static void Initialize(
-        HttpConfiguration config, IContainer container)
+
+        public static void Initialize(HttpConfiguration config, IContainer container)
         {
-            config.DependencyResolver =
-            new AutofacWebApiDependencyResolver(container);
+            config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
         }
+
         private static IContainer RegisterServices(ContainerBuilder builder)
         {
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
