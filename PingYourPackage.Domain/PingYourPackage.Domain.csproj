@@ -56,6 +56,7 @@
     <Compile Include="Entities\ShipmentType.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserInRole.cs" />
+    <Compile Include="Entities\Core\Extentions\UserRepositoryExtensions.cs" />
     <Compile Include="Migrations\201403111227541_Init.cs" />
     <Compile Include="Migrations\201403111227541_Init.Designer.cs">
       <DependentUpon>201403111227541_Init.cs</DependentUpon>
