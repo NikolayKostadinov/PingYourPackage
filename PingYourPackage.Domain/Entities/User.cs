@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PingYourPackage.Domain.Entities.Core;
-
-namespace PingYourPackage.Domain.Entities
+﻿namespace PingYourPackage.Domain.Entities
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using PingYourPackage.Domain.Entities.Core;
+
     public class User : IEntity
     {
         [Key]

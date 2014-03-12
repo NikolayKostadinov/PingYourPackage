@@ -7,6 +7,7 @@
     using PingYourPackage.Domain.Entities.Core;
     public class Shipment : IEntity
     {
+
         [Key]
         public Guid Key { get; set; }
 
@@ -15,6 +16,10 @@
         public Guid ShipmentTypeKey { get; set; }
 
         public decimal Price { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string ReceiverName { get; set; }
 
         [Required]
         [StringLength(50)]

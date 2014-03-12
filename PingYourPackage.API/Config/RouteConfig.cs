@@ -1,10 +1,17 @@
-﻿namespace PingYourPackage.API.Config 
+﻿namespace PingYourPackage.API.Config
 {
-    public class RouteConfig 
+    using System.Web.Http;
+    using PingYourPackage.API.Routing;
+
+    public class RouteConfig
     {
-        public static void RegisterRoutes(System.Web.Http.HttpConfiguration config)
+        public static void RegisterRoutes(HttpRouteCollection routes)
         {
-            //throw new System.NotImplementedException();
+            routes.MapHttpRoute(
+                "DefaultHttpRoute", 
+                "api/{controller}/{key}", 
+                defaults: new { key = RouteParameter.Optional }, 
+                constraints: new { key = new GuidRouteConstraint() });
         }
     }
 }

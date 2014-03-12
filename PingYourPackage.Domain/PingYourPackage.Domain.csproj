@@ -51,10 +51,14 @@
     <Compile Include="Entities\Core\EntityRepository.cs" />
     <Compile Include="Entities\Core\IEntity.cs" />
     <Compile Include="Entities\Core\IEntityRepository.cs" />
-    <Compile Include="Entities\Core\IQueryableExtensions.cs" />
+    <Compile Include="Entities\Extentions\IQueryableExtensions.cs" />
     <Compile Include="Entities\Core\PaginatedList.cs" />
     <Compile Include="Entities\Extentions\RoleRepositoryExtensions.cs" />
-    <Compile Include="Entities\Roll.cs" />
+    <Compile Include="Entities\Extentions\ShipmentRepositoryExtensions.cs" />
+    <Compile Include="Entities\Extentions\ShipmentStateRepositoryExtensions.cs" />
+    <Compile Include="Entities\Extentions\ShipmentTypeRepositoryExtensions.cs" />
+    <Compile Include="Entities\Extentions\UserInRoleRepositoryExtensions.cs" />
+    <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Shipment.cs" />
     <Compile Include="Entities\ShipmentState.cs" />
     <Compile Include="Entities\ShipmentStatus.cs" />
@@ -76,6 +80,16 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CryptoService.cs" />
+    <Compile Include="Services\ICryptoService.cs" />
+    <Compile Include="Services\IMembershipService.cs" />
+    <Compile Include="Services\IShipmentService.cs" />
+    <Compile Include="Services\MembershipService.cs" />
+    <Compile Include="Services\OperationResult.cs" />
+    <Compile Include="Services\OperationResultOfTEntity.cs" />
+    <Compile Include="Services\ShipmentService.cs" />
+    <Compile Include="Services\UserWithRoles.cs" />
+    <Compile Include="Services\ValidUserContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

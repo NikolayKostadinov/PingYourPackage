@@ -1,13 +1,11 @@
 ﻿namespace PingYourPackage.Domain.Entities.Core
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Linq;
     using System.Linq.Expressions;
-    using System.Text;
-    using System.Threading.Tasks;
+    using PingYourPackage.Domain.Entities.Extentions;
 
     public class EntityRepository<T> : IEntityRepository<T>
     where T : class, IEntity, new()
@@ -94,9 +92,16 @@
             dbEntityEntry.State = EntityState.Deleted;
         }
 
+        public void DeleteGraph(T entity)
+        {
+            DbSet<T> dbSet = this.entitiesContext.Set<T>();
+            dbSet.Attach(entity);
+            dbSet.Remove(entity);
+        }
+
         public virtual void Save()
         {
             this.entitiesContext.SaveChanges();
-        }
+        } 
     }
 }

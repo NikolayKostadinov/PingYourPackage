@@ -1,7 +1,8 @@
-﻿namespace PingYourPackage.Domain.Entities.Core
+﻿namespace PingYourPackage.Domain.Entities.Extentions
 {
     using System;
     using System.Linq;
+    using PingYourPackage.Domain.Entities.Core;
 
     public static class IQueryableExtensions
     {
