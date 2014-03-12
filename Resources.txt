@@ -1,0 +1,72 @@
+[Authorize()]
+[api/auth] => AuthHttpRoute => AuthController
+  GET /api/auth [single] => Returns the authanticated user data and his/her roles.
+
+[Authorize(Roles = "Admin")]
+[api/roles] => DefaultHttpRoute => RolesController
+  GET /api/roles [collection]
+  GET /api/roles/{key} [single]
+  GET /api/roles?roleName={roleName} [single]
+
+[Authorize(Roles = "Admin")]
+[api/users/{key}] => DefaultHttpRoute => UsersController
+  GET /api/users [collection]
+  GET /api/users/{key} [single]
+  POST /api/users
+  PUT /api/users/{key}
+
+[Authorize(Roles = "Admin,Employee")]
+[api/shipmenttypes/{key}] => DefaultHttpRoute => ShipmentTypesController
+  GET /api/shipmenttypes [collection]
+  GET /api/shipmenttypes/{key} [single]
+  POST /api/shipmenttypes [single]
+  PUT /api/shipmenttypes/{key}
+
+[Authorize(Roles = "Admin,Employee")]
+[api/affiliates/{key}] => DefaultHttpRoute => AffiliatesController
+  GET /api/affiliates [collection]
+  GET /api/affiliates/{key} [single]
+  POST /api/affiliates [single]
+  PUT /api/affiliates
+
+[Authorize(Roles = "Admin,Employee")]
+[api/shipments/{key}] => DefaultHttpRoute => ShipmentsController
+  GET /api/shipments [collection]
+  GET /api/shipments/{key} [single]
+  POST /api/shipments
+  PUT /api/shipments/{key}
+  DELETE /api/shipments/{key}
+
+[Authorize(Roles = "Affiliate")]
+[api/affiliates/{key}/shipments] => AffiliateShipmentsHttpRoute => AffiliateShipmentsController
+  GET api/affiliates/{key}/shipments [collection]
+  GET api/affiliates/{key}/shipments/{shipmentKey} [single]
+  POST api/affiliates/{key}/shipments
+  PUT api/affiliates/{key}/shipments/{shipmentKey}
+  DELETE api/affiliates/{key}/shipments/{shipmentKey}
+  
+[Authorize(Roles = "Admin,Employee")]
+[api/shipments/{key}/shipmentstates] => ShipmentStatesHttpRoute => ShipmentStatesController
+  GET /api/shipments/{key}/shipmentstates [collection]
+  POST /api/shipments/{key}/shipmentstates
+  
+#######################################################################################  
+## WON'T BE APPLIED
+#######################################################################################  
+[Authorize(Roles = "Admin")]
+[api/users/{key}/roles] => UserRolesHttpRoute => UserRolesController
+  POST /api/users/{key}/roles
+  DELETE /api/users/{key}/roles?roleName={roleName} 
+
+[Authorize(Roles = "Affiliate")]
+[api/affiliates/{key}/shipments/{shipmentKey}/shipmentstates] => AffiliateShipmentShipmentStatesHttpRoute => AffiliateShipmentShipmentStatesController
+  GET api/affiliates/{key}/shipments/{shipmentKey}/shipmentstates [collection]
+  {{{{
+  routes.MapHttpRoute(
+      "AffiliateShipmentShipmentStatesHttpRoute",
+      "api/affiliates/{key}/shipments/{shipmentKey}/shipmentstates",
+      new { controller = "AffiliateShipmentShipmentStates" }); 
+  }}}
+#######################################################################################
+## WON'T BE APPLIED  
+#######################################################################################
