@@ -3,7 +3,7 @@ namespace PingYourPackage.Domain.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class CompleteTheStructure : DbMigration
+    public partial class FinalMigration : DbMigration
     {
         public override void Up()
         {
@@ -29,6 +29,7 @@ namespace PingYourPackage.Domain.Migrations
                         AffiliateKey = c.Guid(nullable: false),
                         ShipmentTypeKey = c.Guid(nullable: false),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        ReceiverName = c.String(nullable: false, maxLength: 50),
                         ReceiverSurname = c.String(nullable: false, maxLength: 50),
                         ReceiverAddress = c.String(nullable: false, maxLength: 50),
                         ReceiverZipCode = c.String(nullable: false, maxLength: 50),
@@ -68,18 +69,63 @@ namespace PingYourPackage.Domain.Migrations
                     })
                 .PrimaryKey(t => t.Key);
             
+            CreateTable(
+                "dbo.Users",
+                c => new
+                    {
+                        Key = c.Guid(nullable: false),
+                        Name = c.String(nullable: false, maxLength: 50),
+                        Email = c.String(nullable: false, maxLength: 320),
+                        HashedPassword = c.String(nullable: false),
+                        Salt = c.String(nullable: false),
+                        IsLocked = c.Boolean(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
+                        LastUpdatedOn = c.DateTime(),
+                    })
+                .PrimaryKey(t => t.Key);
+            
+            CreateTable(
+                "dbo.UserInRoles",
+                c => new
+                    {
+                        Key = c.Guid(nullable: false),
+                        UserKey = c.Guid(nullable: false),
+                        RoleKey = c.Guid(nullable: false),
+                    })
+                .PrimaryKey(t => t.Key)
+                .ForeignKey("dbo.Roles", t => t.RoleKey, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.UserKey, cascadeDelete: true)
+                .Index(t => t.RoleKey)
+                .Index(t => t.UserKey);
+            
+            CreateTable(
+                "dbo.Roles",
+                c => new
+                    {
+                        Key = c.Guid(nullable: false),
+                        Name = c.String(nullable: false, maxLength: 50),
+                    })
+                .PrimaryKey(t => t.Key);
+            
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.Affiliates", "Key", "dbo.Users");
+            DropForeignKey("dbo.UserInRoles", "UserKey", "dbo.Users");
+            DropForeignKey("dbo.UserInRoles", "RoleKey", "dbo.Roles");
             DropForeignKey("dbo.Shipments", "ShipmentTypeKey", "dbo.ShipmentTypes");
             DropForeignKey("dbo.ShipmentStates", "ShipmentKey", "dbo.Shipments");
             DropForeignKey("dbo.Shipments", "AffiliateKey", "dbo.Affiliates");
             DropIndex("dbo.Affiliates", new[] { "Key" });
+            DropIndex("dbo.UserInRoles", new[] { "UserKey" });
+            DropIndex("dbo.UserInRoles", new[] { "RoleKey" });
             DropIndex("dbo.Shipments", new[] { "ShipmentTypeKey" });
             DropIndex("dbo.ShipmentStates", new[] { "ShipmentKey" });
             DropIndex("dbo.Shipments", new[] { "AffiliateKey" });
+            DropTable("dbo.Roles");
+            DropTable("dbo.UserInRoles");
+            DropTable("dbo.Users");
             DropTable("dbo.ShipmentTypes");
             DropTable("dbo.ShipmentStates");
             DropTable("dbo.Shipments");

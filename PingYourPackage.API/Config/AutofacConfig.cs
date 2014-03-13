@@ -1,6 +1,4 @@
-﻿using System;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Data.Entity;
 using System.Reflection;
 using System.Web.Http;
 using Autofac;
@@ -10,7 +8,6 @@ using PingYourPackage.Domain.Services;
 
 namespace PingYourPackage.API.Config
 {
-
     public class AutofacWebAPI
     {
         public static void Initialize(HttpConfiguration config)

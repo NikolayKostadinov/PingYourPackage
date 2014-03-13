@@ -7,7 +7,7 @@
     public class EntitiesContext : DbContext
     {
         public EntitiesContext()
-            : base("PingYourPackageHome")
+            : base("PingYourPackage")
         {
         }
         
@@ -17,7 +17,7 @@
         
         public IDbSet<UserInRole> UserInRoles { get; set; }
         
-        public IDbSet<ShipmentType> PackageTypes { get; set; }
+        public IDbSet<ShipmentType> ShipmentTypes { get; set; }
 
         public IDbSet<Affiliate> Affiliates { get; set; }
 
