@@ -14,18 +14,19 @@ using WebApiDoodle.Net.Http.Client.Model;
 namespace PingYourPackage.API.Controllers
 {
     [Authorize(Roles = "Admin,Employee")]
-    public class ShipmentsController : ApiController {
-
+    public class ShipmentsController : ApiController
+    {
         private const string RouteName = "DefaultHttpRoute";
         private readonly IShipmentService shipmentService;
 
-        public ShipmentsController(IShipmentService shipmentService) {
-
+        public ShipmentsController(IShipmentService shipmentService)
+        {
             this.shipmentService = shipmentService;
         }
 
-        public PaginatedDto<ShipmentDto> GetShipments(PaginatedRequestCommand cmd) {
-
+        // GET /api/shipments
+        public PaginatedDto<ShipmentDto> GetShipments(PaginatedRequestCommand cmd)
+        {
             var shipments = this.shipmentService
                 .GetShipments(cmd.Page, cmd.Take);
 
@@ -33,11 +34,11 @@ namespace PingYourPackage.API.Controllers
                 shipments.Select(sh => sh.ToShipmentDto()));
         }
 
-        public ShipmentDto GetShipment(Guid key) {
-
+        public ShipmentDto GetShipment(Guid key)
+        {
             var shipment = this.shipmentService.GetShipment(key);
-            if (shipment == null) {
-
+            if (shipment == null)
+            {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
 
@@ -45,13 +46,13 @@ namespace PingYourPackage.API.Controllers
         }
 
         [EmptyParameterFilter("requestModel")]
-        public HttpResponseMessage PostShipment(ShipmentRequestModel requestModel) {
-
-            var createdShipmentResult = 
+        public HttpResponseMessage PostShipment(ShipmentRequestModel requestModel)
+        {
+            var createdShipmentResult =
                 this.shipmentService.AddShipment(requestModel.ToShipment());
 
-            if (!createdShipmentResult.IsSuccess) {
-
+            if (!createdShipmentResult.IsSuccess)
+            {
                 return new HttpResponseMessage(HttpStatusCode.Conflict);
             }
 
@@ -59,7 +60,8 @@ namespace PingYourPackage.API.Controllers
                 createdShipmentResult.Entity.ToShipmentDto());
 
             response.Headers.Location = new Uri(
-                Url.Link(RouteName, new {
+                Url.Link(RouteName, new
+                {
                     key = createdShipmentResult.Entity.Key
                 })
             );
@@ -68,11 +70,11 @@ namespace PingYourPackage.API.Controllers
         }
 
         [EmptyParameterFilter("requestModel")]
-        public ShipmentDto PutShipment(Guid key, ShipmentUpdateRequestModel requestModel) {
-
+        public ShipmentDto PutShipment(Guid key, ShipmentUpdateRequestModel requestModel)
+        {
             var shipment = this.shipmentService.GetShipment(key);
-            if (shipment == null) {
-
+            if (shipment == null)
+            {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
 
@@ -82,17 +84,17 @@ namespace PingYourPackage.API.Controllers
             return updatedShipment.ToShipmentDto();
         }
 
-        public HttpResponseMessage DeleteShipment(Guid key) {
-
+        public HttpResponseMessage DeleteShipment(Guid key)
+        {
             var shipment = this.shipmentService.GetShipment(key);
-            if (shipment == null) {
-
+            if (shipment == null)
+            {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
 
             var shipmentRemoveResult = this.shipmentService.RemoveShipment(shipment);
-            if (!shipmentRemoveResult.IsSuccess) {
-
+            if (!shipmentRemoveResult.IsSuccess)
+            {
                 return new HttpResponseMessage(HttpStatusCode.Conflict);
             }
 

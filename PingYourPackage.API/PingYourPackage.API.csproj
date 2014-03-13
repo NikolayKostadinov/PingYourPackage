@@ -95,6 +95,8 @@
     <Compile Include="Controlers\ShipmentStatesController.cs" />
     <Compile Include="Controlers\ShipmentTypesController.cs" />
     <Compile Include="Controlers\UsersController.cs" />
+    <Compile Include="Dispatcher\AffiliateShipmentsDispatcher.cs" />
+    <Compile Include="Dispatcher\ShipmentStatesDispatcher.cs" />
     <Compile Include="Filters\AffiliateShipmentsAuthorizeAttribute.cs" />
     <Compile Include="Filters\EmptyParameterFilterAttribute.cs" />
     <Compile Include="Filters\EnsureShipmentOwnershipAttribute.cs" />
