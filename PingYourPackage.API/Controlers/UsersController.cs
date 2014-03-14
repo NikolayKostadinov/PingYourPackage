@@ -11,19 +11,23 @@ using System.Net.Http;
 using System.Web.Http;
 using WebApiDoodle.Net.Http.Client.Model;
 
-namespace PingYourPackage.API.Controllers {
+namespace PingYourPackage.API.Controllers
+{
 
     [Authorize(Roles = "Admin")]
-    public class UsersController : ApiController {
+    public class UsersController : ApiController
+    {
 
         private readonly IMembershipService _membershipService;
 
-        public UsersController(IMembershipService membershipService) {
+        public UsersController(IMembershipService membershipService)
+        {
 
             _membershipService = membershipService;
         }
 
-        public PaginatedDto<UserDto> GetUsers(PaginatedRequestCommand cmd) {
+        public PaginatedDto<UserDto> GetUsers(PaginatedRequestCommand cmd)
+        {
 
             var users = _membershipService.GetUsers(cmd.Page, cmd.Take);
 
@@ -31,10 +35,12 @@ namespace PingYourPackage.API.Controllers {
                 users.Select(user => user.ToUserDto()));
         }
 
-        public UserDto GetUser(Guid key) {
+        public UserDto GetUser(Guid key)
+        {
 
             var user = _membershipService.GetUser(key);
-            if (user == null) {
+            if (user == null)
+            {
 
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
@@ -43,14 +49,16 @@ namespace PingYourPackage.API.Controllers {
         }
 
         [EmptyParameterFilter("requestModel")]
-        public HttpResponseMessage PostUser(UserRequestModel requestModel) {
+        public HttpResponseMessage PostUser(UserRequestModel requestModel)
+        {
 
-            var createdUserResult = 
+            var createdUserResult =
                 _membershipService.CreateUser(
-                    requestModel.Name, requestModel.Email, 
+                    requestModel.Name, requestModel.Email,
                     requestModel.Password, requestModel.Roles);
 
-            if (!createdUserResult.IsSuccess) {
+            if (!createdUserResult.IsSuccess)
+            {
 
                 return new HttpResponseMessage(HttpStatusCode.Conflict);
             }
@@ -65,10 +73,12 @@ namespace PingYourPackage.API.Controllers {
         }
 
         [EmptyParameterFilter("requestModel")]
-        public UserDto PutUser(Guid key, UserUpdateRequestModel requestModel) {
+        public UserDto PutUser(Guid key, UserUpdateRequestModel requestModel)
+        {
 
             var user = _membershipService.GetUser(key);
-            if (user == null) {
+            if (user == null)
+            {
 
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }

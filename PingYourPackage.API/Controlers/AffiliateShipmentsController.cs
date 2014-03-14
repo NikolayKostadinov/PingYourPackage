@@ -1,9 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using PingYourPackage.API.Filters;
+﻿using PingYourPackage.API.Filters;
 using PingYourPackage.API.Model;
 using PingYourPackage.API.Model.Dtos;
 using PingYourPackage.API.Model.RequestCommands;
@@ -11,12 +6,19 @@ using PingYourPackage.API.Model.RequestModels;
 using PingYourPackage.API.ModelBinding;
 using PingYourPackage.Domain.Entities;
 using PingYourPackage.Domain.Services;
+using System;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 using WebApiDoodle.Net.Http.Client.Model;
 
 namespace PingYourPackage.API.Controllers
 {
+
     [AffiliateShipmentsAuthorize]
-    public class AffiliateShipmentsController : ApiController {
+    public class AffiliateShipmentsController : ApiController
+    {
 
         // We are OK inside this controller in terms of 
         // Affiliate existance and its relation with the current 
@@ -34,12 +36,14 @@ namespace PingYourPackage.API.Controllers
         private const string RouteName = "AffiliateShipmentsHttpRoute";
         private readonly IShipmentService _shipmentService;
 
-        public AffiliateShipmentsController(IShipmentService shipmentService) {
+        public AffiliateShipmentsController(IShipmentService shipmentService)
+        {
 
             _shipmentService = shipmentService;
         }
 
-        public PaginatedDto<ShipmentDto> GetShipments(Guid key, PaginatedRequestCommand cmd) {
+        public PaginatedDto<ShipmentDto> GetShipments(Guid key, PaginatedRequestCommand cmd)
+        {
 
             var shipments = _shipmentService
                 .GetShipments(cmd.Page, cmd.Take, affiliateKey: key);
@@ -50,20 +54,23 @@ namespace PingYourPackage.API.Controllers
 
         [EnsureShipmentOwnership]
         public ShipmentDto GetShipment(
-            Guid key, 
-            Guid shipmentKey, 
-            [BindShipment]Shipment shipment) {
+            Guid key,
+            Guid shipmentKey,
+            [BindShipment]Shipment shipment)
+        {
 
             return shipment.ToShipmentDto();
         }
 
         [EmptyParameterFilter("requestModel")]
-        public HttpResponseMessage PostShipment(Guid key, ShipmentByAffiliateRequestModel requestModel) {
+        public HttpResponseMessage PostShipment(Guid key, ShipmentByAffiliateRequestModel requestModel)
+        {
 
             var createdShipmentResult =
                 _shipmentService.AddShipment(requestModel.ToShipment(key));
 
-            if (!createdShipmentResult.IsSuccess) {
+            if (!createdShipmentResult.IsSuccess)
+            {
 
                 return new HttpResponseMessage(HttpStatusCode.Conflict);
             }
@@ -72,7 +79,8 @@ namespace PingYourPackage.API.Controllers
                 createdShipmentResult.Entity.ToShipmentDto());
 
             response.Headers.Location = new Uri(
-                Url.Link(RouteName, new { 
+                Url.Link(RouteName, new
+                {
                     key = createdShipmentResult.Entity.AffiliateKey,
                     shipmentKey = createdShipmentResult.Entity.Key
                 })
@@ -84,10 +92,11 @@ namespace PingYourPackage.API.Controllers
         [EnsureShipmentOwnership]
         [EmptyParameterFilter("requestModel")]
         public ShipmentDto PutShipment(
-            Guid key, 
+            Guid key,
             Guid shipmentKey,
             ShipmentByAffiliateUpdateRequestModel requestModel,
-            [BindShipment]Shipment shipment) {
+            [BindShipment]Shipment shipment)
+        {
 
             var updatedShipment = _shipmentService.UpdateShipment(
                 requestModel.ToShipment(shipment));
@@ -97,13 +106,15 @@ namespace PingYourPackage.API.Controllers
 
         [EnsureShipmentOwnership]
         public HttpResponseMessage DeleteShipment(
-            Guid key, 
+            Guid key,
             Guid shipmentKey,
-            [BindShipment]Shipment shipment) {
+            [BindShipment]Shipment shipment)
+        {
 
             var operationResult = _shipmentService.RemoveShipment(shipment);
 
-            if (!operationResult.IsSuccess) {
+            if (!operationResult.IsSuccess)
+            {
 
                 return new HttpResponseMessage(HttpStatusCode.Conflict);
             }

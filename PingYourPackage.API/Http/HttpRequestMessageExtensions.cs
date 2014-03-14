@@ -8,8 +8,9 @@ using PingYourPackage.API;
 using System.Net.Http;
 using System.Web.Http.Dependencies;
 
-namespace PingYourPackage.API.Http
+namespace PingYourPackage.API
 {
+
     internal static class HttpRequestMessageExtensions
     {
 

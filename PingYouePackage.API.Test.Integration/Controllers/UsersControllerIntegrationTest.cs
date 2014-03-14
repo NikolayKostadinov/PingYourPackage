@@ -1,4 +1,11 @@
-﻿using System;
+﻿using Autofac;
+using Autofac.Integration.WebApi;
+using Moq;
+using PingYourPackage.API.Model.Dtos;
+using PingYourPackage.API.Model.RequestModels;
+using PingYourPackage.Domain.Entities;
+using PingYourPackage.Domain.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -6,18 +13,11 @@ using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Autofac;
-using Autofac.Integration.WebApi;
-using Moq;
-using PingYourPackage.API.Model.Dtos;
-using PingYourPackage.API.Model.RequestModels;
-using PingYourPackage.Domain.Entities;
-using PingYourPackage.Domain.Entities.Extentions;
-using PingYourPackage.Domain.Services;
 using Xunit;
 
 namespace PingYourPackage.API.Test.Integration.Controllers
 {
+
     public class UsersControllerIntegrationTest
     {
 
@@ -151,6 +151,7 @@ namespace PingYourPackage.API.Test.Integration.Controllers
 
         public class GetUser
         {
+
             [Fact, NullCurrentPrincipal]
             public async Task
                 Returns_200_And_Expected_User_If_Request_Authorized_And_User_Exists()
@@ -238,6 +239,7 @@ namespace PingYourPackage.API.Test.Integration.Controllers
 
         public class PostUser
         {
+
             [Fact, NullCurrentPrincipal]
             public async Task
                 Returns_201_And_User_If_Request_Authorized_And_Success()

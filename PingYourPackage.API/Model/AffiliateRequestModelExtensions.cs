@@ -1,13 +1,17 @@
 ﻿using PingYourPackage.API.Model.RequestModels;
 using PingYourPackage.Domain.Entities;
 
-namespace PingYourPackage.API.Model {
-    
-    internal static class AffiliateRequestModelExtensions {
+namespace PingYourPackage.API.Model
+{
 
-        internal static Affiliate ToAffiliate(this AffiliateRequestModel requestModel) {
+    internal static class AffiliateRequestModelExtensions
+    {
 
-            return new Affiliate {
+        internal static Affiliate ToAffiliate(this AffiliateRequestModel requestModel)
+        {
+
+            return new Affiliate
+            {
                 CompanyName = requestModel.CompanyName,
                 Address = requestModel.Address,
                 TelephoneNumber = requestModel.TelephoneNumber

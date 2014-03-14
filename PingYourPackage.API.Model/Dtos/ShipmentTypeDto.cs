@@ -1,9 +1,11 @@
-﻿namespace PingYourPackage.API.Model.Dtos {
-    
-    using System;
-    using WebApiDoodle.Net.Http.Client.Model;
-    
-    public class ShipmentTypeDto : IDto {
+﻿using System;
+using WebApiDoodle.Net.Http.Client.Model;
+
+namespace PingYourPackage.API.Model.Dtos
+{
+
+    public class ShipmentTypeDto : IDto
+    {
 
         public Guid Key { get; set; }
         public string Name { get; set; }

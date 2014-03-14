@@ -11,13 +11,16 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace PingYourPackage.API.Test.Integration.Controllers {
-    
-    public class AuthControllerIntegrationTest {
+namespace PingYourPackage.API.Test.Integration.Controllers
+{
+
+    public class AuthControllerIntegrationTest
+    {
 
         [Fact, NullCurrentPrincipal]
-        public async Task 
-            Returns_200_And_Expected_User_For_The_Authed_User() {
+        public async Task
+            Returns_200_And_Expected_User_For_The_Authed_User()
+        {
 
             // Arrange
             var mockMemSrv = ServicesMockHelper
@@ -26,8 +29,10 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             mockMemSrv.Setup(ms =>
                 ms.GetUser(Constants.ValidAffiliateUserName)
             ).Returns<string>(
-                userName => new UserWithRoles {
-                    User = new User {
+                userName => new UserWithRoles
+                {
+                    User = new User
+                    {
                         Key = Guid.NewGuid(),
                         Name = userName,
                         Email = "foo@bar.com",
@@ -61,7 +66,7 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             Assert.Equal(Constants.ValidAffiliateUserName, user.Name);
             Assert.True(user.Roles.Any(
                 role => role.Name.Equals(
-                        "Affiliate", 
+                        "Affiliate",
                         StringComparison.OrdinalIgnoreCase
                     )
                 )
@@ -69,7 +74,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
         }
 
         private static IContainer GetInitialServices(
-            IMembershipService memSrv) {
+            IMembershipService memSrv)
+        {
 
             var builder = IntegrationTestHelper
                 .GetEmptyContainerBuilder();

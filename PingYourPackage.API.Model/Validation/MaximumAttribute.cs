@@ -8,11 +8,13 @@ namespace PingYourPackage.API.Model.Validation
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     public class MaximumAttribute : ValidationAttribute
     {
+
         private readonly int _maximumValue;
 
         public MaximumAttribute(int maximum) :
             base(errorMessage: "The {0} field value must be maximum {1}.")
         {
+
             _maximumValue = maximum;
         }
 

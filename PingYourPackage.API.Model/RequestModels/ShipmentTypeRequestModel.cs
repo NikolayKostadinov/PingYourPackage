@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingYourPackage.API.Model.RequestModels {
-    
-    public class ShipmentTypeRequestModel {
+namespace PingYourPackage.API.Model.RequestModels
+{
+
+    public class ShipmentTypeRequestModel
+    {
 
         [Required]
         [StringLength(50)]

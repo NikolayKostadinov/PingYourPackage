@@ -4,7 +4,6 @@ using Moq;
 using PingYourPackage.API.Model.Dtos;
 using PingYourPackage.API.Model.RequestModels;
 using PingYourPackage.Domain.Entities;
-using PingYourPackage.Domain.Entities.Extentions;
 using PingYourPackage.Domain.Services;
 using System;
 using System.Collections.Generic;
@@ -16,15 +15,19 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Xunit;
 
-namespace PingYourPackage.API.Test.Integration.Controllers {
-    
-    public class ShipmentTypesControllerIntegrationTest {
+namespace PingYourPackage.API.Test.Integration.Controllers
+{
 
-        public class GetShipmentTypes {
+    public class ShipmentTypesControllerIntegrationTest
+    {
+
+        public class GetShipmentTypes
+        {
 
             [Fact, NullCurrentPrincipal]
             public Task
-                Returns_200_And_ShipmentTypes_If_Request_Authorized() {
+                Returns_200_And_ShipmentTypes_If_Request_Authorized()
+            {
 
                 // Arrange
                 var config = IntegrationTestHelper
@@ -53,7 +56,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                         expectedHasPreviousPageResult: false);
             }
 
-            private static IContainer GetContainer() {
+            private static IContainer GetContainer()
+            {
 
                 var shipmentTypes = GetDummyShipmentTypes(new[] { 
                     Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
@@ -66,7 +70,7 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                         It.IsAny<int>(), It.IsAny<int>()
                     )
                 ).Returns<int, int>(
-                    (pageIndex, pageSize) => 
+                    (pageIndex, pageSize) =>
                         shipmentTypes.AsQueryable()
                             .ToPaginatedList(pageIndex, pageSize)
                 );
@@ -79,11 +83,13 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             }
         }
 
-        public class GetShipmentType {
+        public class GetShipmentType
+        {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_200_And_ShipmentType_If_Request_Authorized_And_ShipmentType_Exists() {
+                Returns_200_And_ShipmentType_If_Request_Authorized_And_ShipmentType_Exists()
+            {
 
                 // Arrange
                 Guid[] keys = new[] { Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() };
@@ -120,7 +126,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_404_If_Request_Authorized_But_ShipmentType_Does_Not_Exist() {
+                Returns_404_If_Request_Authorized_But_ShipmentType_Does_Not_Exist()
+            {
 
                 // Arrange
                 Guid[] keys = new[] { Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() };
@@ -148,8 +155,9 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
             }
 
-            private static IContainer GetContainer(Guid[] keys, 
-                IEnumerable<ShipmentType> shipmentTypes) {
+            private static IContainer GetContainer(Guid[] keys,
+                IEnumerable<ShipmentType> shipmentTypes)
+            {
 
                 var containerBuilder = GetInitialContainerBuilder();
 
@@ -173,17 +181,20 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             }
         }
 
-        public class PostShipmentType {
+        public class PostShipmentType
+        {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_201_And_ShipmentType_If_Request_Authorized_And_Success() {
+                Returns_201_And_ShipmentType_If_Request_Authorized_And_Success()
+            {
 
                 // Arrange
                 var config = IntegrationTestHelper
                     .GetInitialIntegrationTestConfig(GetContainer());
 
-                var shipmentTypeRequestModel = new ShipmentTypeRequestModel {
+                var shipmentTypeRequestModel = new ShipmentTypeRequestModel
+                {
                     Name = "X-Large",
                     Price = 40.00M
                 };
@@ -213,7 +224,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_409_If_Request_Authorized_But_Conflicted() {
+                Returns_409_If_Request_Authorized_But_Conflicted()
+            {
 
                 // Arrange
                 var shipmentTypes = GetDummyShipmentTypes(new[] { 
@@ -223,7 +235,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                     .GetInitialIntegrationTestConfig(
                         GetContainer(shipmentTypes));
 
-                var shipmentTypeRequestModel = new ShipmentTypeRequestModel {
+                var shipmentTypeRequestModel = new ShipmentTypeRequestModel
+                {
                     Name = targetShipmentType.Name,
                     Price = 40.00M
                 };
@@ -251,13 +264,15 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_400_If_Request_Authorized_But_Invalid() {
+                Returns_400_If_Request_Authorized_But_Invalid()
+            {
 
                 // Arrange
                 var config = IntegrationTestHelper
                     .GetInitialIntegrationTestConfig(GetContainer());
 
-                var shipmentTypeRequestModel = new ShipmentTypeRequestModel {
+                var shipmentTypeRequestModel = new ShipmentTypeRequestModel
+                {
                     Name = "ANameWhichIsMoreThan50CharsANameWhichIsMoreThan50Chars",
                     Price = 40.00M
                 };
@@ -289,7 +304,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_400_If_Request_Authorized_But_Message_Body_Is_Empty() {
+                Returns_400_If_Request_Authorized_But_Message_Body_Is_Empty()
+            {
 
                 // Arrange
                 var config = IntegrationTestHelper
@@ -317,19 +333,22 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 Assert.NotNull(requestModelError);
             }
 
-            private static IContainer GetContainer() {
+            private static IContainer GetContainer()
+            {
 
                 return GetContainer(new[] { 
                     Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() });
             }
 
-            private static IContainer GetContainer(Guid[] keys) {
+            private static IContainer GetContainer(Guid[] keys)
+            {
 
                 var shipmentTypes = GetDummyShipmentTypes(keys);
                 return GetContainer(shipmentTypes);
             }
 
-            private static IContainer GetContainer(IEnumerable<ShipmentType> shipmentTypes) {
+            private static IContainer GetContainer(IEnumerable<ShipmentType> shipmentTypes)
+            {
 
                 var containerBuilder = GetInitialContainerBuilder();
 
@@ -337,7 +356,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 shipmentSrvMock.Setup(ss => ss.AddShipmentType(
                         It.IsAny<ShipmentType>()
                     )
-                ).Returns<ShipmentType>(st => {
+                ).Returns<ShipmentType>(st =>
+                {
 
                     st.Key = Guid.NewGuid();
                     st.CreatedOn = DateTime.Now;
@@ -364,11 +384,13 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             }
         }
 
-        public class PutShipmentType {
+        public class PutShipmentType
+        {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_404_If_Request_Authorized_But_ShipmentType_Does_Not_Exist() {
+                Returns_404_If_Request_Authorized_But_ShipmentType_Does_Not_Exist()
+            {
 
                 // Arrange
                 Guid[] keys = new[] { Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() };
@@ -376,7 +398,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 var config = IntegrationTestHelper
                     .GetInitialIntegrationTestConfig(GetContainer(keys));
 
-                var shipmentTypeRequestModel = new ShipmentTypeRequestModel { 
+                var shipmentTypeRequestModel = new ShipmentTypeRequestModel
+                {
                     Name = "X-Large",
                     Price = 40.00M
                 };
@@ -404,7 +427,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_400_If_Request_Authorized_But_Invalid() {
+                Returns_400_If_Request_Authorized_But_Invalid()
+            {
 
                 // Arrange
                 Guid[] keys = new[] { Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() };
@@ -412,7 +436,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 var config = IntegrationTestHelper
                     .GetInitialIntegrationTestConfig(GetContainer(keys));
 
-                var shipmentTypeRequestModel = new ShipmentTypeRequestModel {
+                var shipmentTypeRequestModel = new ShipmentTypeRequestModel
+                {
                     Name = "ANameWhichIsMoreThan50CharsANameWhichIsMoreThan50Chars",
                     Price = 40.00M
                 };
@@ -444,7 +469,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_200_And_Updated_ShipmentType_If_Request_Authorized_But_Request_Is_Valid() {
+                Returns_200_And_Updated_ShipmentType_If_Request_Authorized_But_Request_Is_Valid()
+            {
 
                 // Arrange
                 Guid[] keys = new[] { Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() };
@@ -452,7 +478,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 var config = IntegrationTestHelper
                     .GetInitialIntegrationTestConfig(GetContainer(keys));
 
-                var shipmentTypeRequestModel = new ShipmentTypeRequestModel {
+                var shipmentTypeRequestModel = new ShipmentTypeRequestModel
+                {
                     Name = "X-Large",
                     Price = 40.00M
                 };
@@ -483,7 +510,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_400_If_Request_Authorized_But_Message_Body_Is_Empty() {
+                Returns_400_If_Request_Authorized_But_Message_Body_Is_Empty()
+            {
 
                 // Arrange
                 Guid[] keys = new[] { Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() };
@@ -513,7 +541,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 Assert.NotNull(requestModelError);
             }
 
-            private static IContainer GetContainer(Guid[] keys) {
+            private static IContainer GetContainer(Guid[] keys)
+            {
 
                 var shipmentTypes = GetDummyShipmentTypes(keys);
                 var containerBuilder = GetInitialContainerBuilder();
@@ -543,7 +572,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             }
         }
 
-        private static ContainerBuilder GetInitialContainerBuilder() {
+        private static ContainerBuilder GetInitialContainerBuilder()
+        {
 
             var builder = IntegrationTestHelper
                 .GetEmptyContainerBuilder();
@@ -558,7 +588,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             return builder;
         }
 
-        private static IEnumerable<ShipmentType> GetDummyShipmentTypes(Guid[] keys) {
+        private static IEnumerable<ShipmentType> GetDummyShipmentTypes(Guid[] keys)
+        {
 
             List<ShipmentType> shipmentTypes = new List<ShipmentType> { 
                 new ShipmentType { Key = keys[0], Name = "Small", Price = 10.00M, CreatedOn = DateTime.Now },

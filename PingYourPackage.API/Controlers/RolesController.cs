@@ -7,30 +7,36 @@ using System.Linq;
 using System.Net;
 using System.Web.Http;
 
-namespace PingYourPackage.API.Controllers {
+namespace PingYourPackage.API.Controllers
+{
 
     [Authorize(Roles = "Admin")]
-    public class RolesController : ApiController {
+    public class RolesController : ApiController
+    {
 
         private readonly IMembershipService _membershipService;
 
         public RolesController(
-            IMembershipService membershipService) {
+            IMembershipService membershipService)
+        {
 
             _membershipService = membershipService;
         }
 
-        public IEnumerable<RoleDto> GetRoles() {
+        public IEnumerable<RoleDto> GetRoles()
+        {
 
             return _membershipService
                    .GetRoles()
                    .Select(role => role.ToRoleDto());
         }
 
-        public RoleDto GetRole(Guid key) {
+        public RoleDto GetRole(Guid key)
+        {
 
             var role = _membershipService.GetRole(key);
-            if (role == null) {
+            if (role == null)
+            {
 
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
@@ -38,10 +44,12 @@ namespace PingYourPackage.API.Controllers {
             return role.ToRoleDto();
         }
 
-        public RoleDto GetRole(string roleName) {
+        public RoleDto GetRole(string roleName)
+        {
 
             var role = _membershipService.GetRole(roleName);
-            if (role == null) {
+            if (role == null)
+            {
 
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }

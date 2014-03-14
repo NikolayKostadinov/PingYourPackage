@@ -1,10 +1,14 @@
-﻿namespace PingYourPackage.API.Test.Integration
+﻿using Moq;
+using PingYourPackage.Domain.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Principal;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PingYourPackage.API.Test.Integration
 {
-    using System;
-    using System.Linq;
-    using System.Security.Principal;
-    using Moq;
-    using PingYourPackage.Domain.Services;
 
     internal static class ServicesMockHelper
     {

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace PingYourPackage.API.Model.RequestModels
 {
+
     public class ShipmentUpdateRequestModel : ShipmentBaseRequestModel
     {
+
     }
 }

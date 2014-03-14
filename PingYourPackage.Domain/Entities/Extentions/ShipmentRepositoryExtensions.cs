@@ -1,9 +1,11 @@
-﻿namespace PingYourPackage.Domain.Entities.Extentions
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PingYourPackage.Domain.Entities
 {
-    using System;
-    using System.Linq;
-    using PingYourPackage.Domain.Entities;
-    using PingYourPackage.Domain.Entities.Core;
 
     public static class ShipmentRepositoryExtensions
     {

@@ -1,11 +1,15 @@
-﻿namespace PingYourPackage.Domain.Entities
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PingYourPackage.Domain.Entities
 {
-    using System;
-    using System.Linq;
-    using PingYourPackage.Domain.Entities.Core;
 
     public static class ShipmentTypeRepositoryExtensions
     {
+
         public static ShipmentType GetSingleByName(
             this IEntityRepository<ShipmentType> shipmentTypeRepository,
             string name)

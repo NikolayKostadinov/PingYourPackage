@@ -10,19 +10,23 @@ using System.Net.Http;
 using System.Web.Http;
 using WebApiDoodle.Net.Http.Client.Model;
 
-namespace PingYourPackage.API.Controllers {
+namespace PingYourPackage.API.Controllers
+{
 
     [Authorize(Roles = "Admin,Employee")]
-    public class AffiliatesController : ApiController {
+    public class AffiliatesController : ApiController
+    {
 
         private readonly IShipmentService _shipmentService;
 
-        public AffiliatesController(IShipmentService shipmentService) {
+        public AffiliatesController(IShipmentService shipmentService)
+        {
 
             _shipmentService = shipmentService;
         }
 
-        public PaginatedDto<AffiliateDto> GetAffiliates(PaginatedRequestCommand cmd) {
+        public PaginatedDto<AffiliateDto> GetAffiliates(PaginatedRequestCommand cmd)
+        {
 
             var affiliates = _shipmentService.GetAffiliates(
                 cmd.Page, cmd.Take);
@@ -31,10 +35,12 @@ namespace PingYourPackage.API.Controllers {
                 affiliates.Select(af => af.ToAffiliateDto()));
         }
 
-        public AffiliateDto GetAffiliate(Guid key) {
+        public AffiliateDto GetAffiliate(Guid key)
+        {
 
             var affiliate = _shipmentService.GetAffiliate(key);
-            if (affiliate == null) {
+            if (affiliate == null)
+            {
 
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
@@ -42,14 +48,16 @@ namespace PingYourPackage.API.Controllers {
             return affiliate.ToAffiliateDto();
         }
 
-        public HttpResponseMessage PostAffiliate(AffiliateRequestModel requestModel) {
+        public HttpResponseMessage PostAffiliate(AffiliateRequestModel requestModel)
+        {
 
             var createdAffiliateResult = _shipmentService
                 .AddAffiliate(
-                    requestModel.UserKey.Value, 
+                    requestModel.UserKey.Value,
                     requestModel.ToAffiliate());
 
-            if (!createdAffiliateResult.IsSuccess) {
+            if (!createdAffiliateResult.IsSuccess)
+            {
 
                 return new HttpResponseMessage(HttpStatusCode.Conflict);
             }
@@ -63,10 +71,12 @@ namespace PingYourPackage.API.Controllers {
             return response;
         }
 
-        public AffiliateDto PutAffiliate(Guid key, AffiliateUpdateRequestModel requestModel) {
+        public AffiliateDto PutAffiliate(Guid key, AffiliateUpdateRequestModel requestModel)
+        {
 
             var affiliate = _shipmentService.GetAffiliate(key);
-            if (affiliate == null) {
+            if (affiliate == null)
+            {
 
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }

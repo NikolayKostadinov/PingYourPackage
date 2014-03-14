@@ -12,16 +12,20 @@ using PingYourPackage.API.Model.Dtos;
 using System.Linq;
 using Moq;
 
-namespace PingYourPackage.API.Test.Integration.Controllers {
+namespace PingYourPackage.API.Test.Integration.Controllers
+{
 
-    public class RolesControllerIntegrationTest {
+    public class RolesControllerIntegrationTest
+    {
 
         // GetRoles action method
-        public class GetRoles {
+        public class GetRoles
+        {
 
             [Fact, NullCurrentPrincipal]
             public Task
-                Returns_Unauthorized_Response_If_Request_Is_Not_Authorized() {
+                Returns_Unauthorized_Response_If_Request_Is_Not_Authorized()
+            {
 
                 return IntegrationAuthTestHelper.TestRequestAuthorization(
                     HttpMethod.Get,
@@ -34,7 +38,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
 
             [Fact, NullCurrentPrincipal]
             public Task
-                Returns_Unauthorized_Response_If_Request_Is_By_Employee() {
+                Returns_Unauthorized_Response_If_Request_Is_By_Employee()
+            {
 
                 return IntegrationAuthTestHelper.TestRequestAuthorization(
                     HttpMethod.Get,
@@ -47,7 +52,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
 
             [Fact, NullCurrentPrincipal]
             public Task
-                Returns_Unauthorized_Response_If_Request_Is_By_Affiliate() {
+                Returns_Unauthorized_Response_If_Request_Is_By_Affiliate()
+            {
 
                 return IntegrationAuthTestHelper.TestRequestAuthorization(
                     HttpMethod.Get,
@@ -60,7 +66,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
 
             [Fact, NullCurrentPrincipal]
             public Task
-                Does_Not_Returns_Unauthorized_Response_If_Request_Authorized() {
+                Does_Not_Returns_Unauthorized_Response_If_Request_Authorized()
+            {
 
                 return IntegrationAuthTestHelper.TestRequestAuthorization(
                     HttpMethod.Get,
@@ -72,8 +79,9 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             }
 
             [Fact, NullCurrentPrincipal]
-            public async Task 
-                Returns_200_And_Expected_Roles_If_Request_Authorized() {
+            public async Task
+                Returns_200_And_Expected_Roles_If_Request_Authorized()
+            {
 
                 // Arrange
                 var config = IntegrationTestHelper
@@ -103,7 +111,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 Assert.True(roles.Any(r => r.Name == "Guest"));
             }
 
-            private IMembershipService GetMembershipService() {
+            private IMembershipService GetMembershipService()
+            {
 
                 var roles = GetDummyRoles(new[] { 
                     Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
@@ -117,11 +126,13 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             }
         }
 
-        public class GetRole_Key {
+        public class GetRole_Key
+        {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_200_And_Expected_Role_If_Request_Authorized() {
+                Returns_200_And_Expected_Role_If_Request_Authorized()
+            {
 
                 // Arrange
                 Guid[] keys = new[] { 
@@ -155,8 +166,9 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             }
 
             [Fact, NullCurrentPrincipal]
-            public async Task 
-                Returns_404_NotFound_If_Not_Exist_With_Key() {
+            public async Task
+                Returns_404_NotFound_If_Not_Exist_With_Key()
+            {
 
                 // Arrange
                 Guid[] keys = new[] { 
@@ -186,7 +198,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
             }
 
-            private IMembershipService GetMembershipService(Guid[] keys) {
+            private IMembershipService GetMembershipService(Guid[] keys)
+            {
 
                 var roles = GetDummyRoles(keys);
                 var mockMemSrv = ServicesMockHelper
@@ -197,7 +210,7 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                             keys.Contains(key)
                         )
                     )
-                ).Returns<Guid>(key => 
+                ).Returns<Guid>(key =>
                     roles.FirstOrDefault(
                         role => role.Key == key
                     )
@@ -207,11 +220,13 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             }
         }
 
-        public class GetRole_RoleName {
+        public class GetRole_RoleName
+        {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_200_And_Expected_Role_If_Request_Authorized() {
+                Returns_200_And_Expected_Role_If_Request_Authorized()
+            {
 
                 var requestRoleName = "Admin";
 
@@ -240,7 +255,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_404_If_Request_Authorized_But_Role_Does_Not_Exist() {
+                Returns_404_If_Request_Authorized_But_Role_Does_Not_Exist()
+            {
 
                 var requestRoleName = "FooBar";
 
@@ -266,7 +282,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
             }
 
-            private IMembershipService GetMembershipService() {
+            private IMembershipService GetMembershipService()
+            {
 
                 var roles = GetDummyRoles(new[] { 
                     Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
@@ -295,7 +312,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             }
         }
 
-        private static IContainer GetInitialServices(IMembershipService memSrv) {
+        private static IContainer GetInitialServices(IMembershipService memSrv)
+        {
 
             var builder = IntegrationTestHelper
                 .GetEmptyContainerBuilder();
@@ -307,7 +325,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             return builder.Build();
         }
 
-        private static IEnumerable<Role> GetDummyRoles(Guid[] keys) {
+        private static IEnumerable<Role> GetDummyRoles(Guid[] keys)
+        {
 
             List<Role> roles = new List<Role> {
                 new Role { Key = keys[0], Name = "Admin" },

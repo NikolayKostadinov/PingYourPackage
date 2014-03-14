@@ -10,14 +10,18 @@ using System.Net;
 
 namespace PingYourPackage.API.Filters
 {
+
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
-    public class EmptyParameterFilterAttribute : ActionFilterAttribute {
+    public class EmptyParameterFilterAttribute : ActionFilterAttribute
+    {
 
         public string ParameterName { get; private set; }
 
-        public EmptyParameterFilterAttribute(string parameterName) {
+        public EmptyParameterFilterAttribute(string parameterName)
+        {
 
-            if (string.IsNullOrEmpty(parameterName)) {
+            if (string.IsNullOrEmpty(parameterName))
+            {
 
                 throw new ArgumentNullException("parameterName");
             }
@@ -26,12 +30,15 @@ namespace PingYourPackage.API.Filters
         }
 
         public override void OnActionExecuting(
-            HttpActionContext actionContext) {
-            
-            object parameterValue;
-            if (actionContext.ActionArguments.TryGetValue(ParameterName, out parameterValue)) {
+            HttpActionContext actionContext)
+        {
 
-                if (parameterValue == null) {
+            object parameterValue;
+            if (actionContext.ActionArguments.TryGetValue(ParameterName, out parameterValue))
+            {
+
+                if (parameterValue == null)
+                {
 
                     actionContext.ModelState.AddModelError(
                         ParameterName, FormatErrorMessage(ParameterName));
@@ -43,7 +50,8 @@ namespace PingYourPackage.API.Filters
             }
         }
 
-        private string FormatErrorMessage(string parameterName) {
+        private string FormatErrorMessage(string parameterName)
+        {
 
             return string.Format("The {0} cannot be null.", parameterName);
         }

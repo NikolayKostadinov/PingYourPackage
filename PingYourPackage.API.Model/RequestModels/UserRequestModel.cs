@@ -5,13 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingYourPackage.API.Model.RequestModels {
+namespace PingYourPackage.API.Model.RequestModels
+{
 
-    public class UserRequestModel 
-        : UserBaseRequestModel {
+    public class UserRequestModel
+        : UserBaseRequestModel
+    {
 
         [Required]
-        [StringLength(30, MinimumLength  = 8)]
+        [StringLength(30, MinimumLength = 8)]
         public string Password { get; set; }
 
         [MinLength(1)]

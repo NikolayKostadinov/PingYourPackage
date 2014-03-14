@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using PingYourPackage.API.Test.Common;
 
 namespace PingYourPackage.API.Test.Integration
 {

@@ -1,9 +1,10 @@
-﻿namespace PingYourPackage.API.Model.Dtos
+﻿using System;
+using System.Collections.Generic;
+using WebApiDoodle.Net.Http.Client.Model;
+
+namespace PingYourPackage.API.Model.Dtos
 {
-    using System;
-    using System.Collections.Generic;
-    using WebApiDoodle.Net.Http.Client.Model;
-    
+
     public class ShipmentDto : IDto
     {
 

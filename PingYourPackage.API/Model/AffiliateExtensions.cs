@@ -6,19 +6,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingYourPackage.API.Model {
-    
-    internal static class AffiliateExtensions {
+namespace PingYourPackage.API.Model
+{
 
-        internal static AffiliateDto ToAffiliateDto(this Affiliate affiliate) {
+    internal static class AffiliateExtensions
+    {
 
-            return new AffiliateDto {
+        internal static AffiliateDto ToAffiliateDto(this Affiliate affiliate)
+        {
+
+            return new AffiliateDto
+            {
                 Key = affiliate.Key,
                 CompanyName = affiliate.CompanyName,
                 Address = affiliate.Address,
                 TelephoneNumber = affiliate.TelephoneNumber,
                 CreatedOn = affiliate.CreatedOn,
-                MemberInfo = new AffiliateMemberInfoDto { 
+                MemberInfo = new AffiliateMemberInfoDto
+                {
                     UserName = affiliate.User.Name,
                     Email = affiliate.User.Name,
                     IsLocked = affiliate.User.IsLocked,

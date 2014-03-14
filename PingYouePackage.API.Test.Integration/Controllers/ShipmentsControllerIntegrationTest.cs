@@ -4,7 +4,6 @@ using Moq;
 using PingYourPackage.API.Model.Dtos;
 using PingYourPackage.API.Model.RequestModels;
 using PingYourPackage.Domain.Entities;
-using PingYourPackage.Domain.Entities.Extentions;
 using PingYourPackage.Domain.Services;
 using System;
 using System.Collections.Generic;
@@ -16,17 +15,21 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Xunit;
 
-namespace PingYourPackage.API.Test.Integration.Controllers {
-    
-    public class ShipmentsControllerIntegrationTest {
+namespace PingYourPackage.API.Test.Integration.Controllers
+{
+
+    public class ShipmentsControllerIntegrationTest
+    {
 
         private static readonly string ApiBaseRequestPath = "api/shipments";
 
-        public class GetShipments {
+        public class GetShipments
+        {
 
             [Fact, NullCurrentPrincipal]
             public Task
-                Returns_200_And_Shipments_If_Request_Authorized() {
+                Returns_200_And_Shipments_If_Request_Authorized()
+            {
 
                 // Arrange
                 var config = IntegrationTestHelper
@@ -54,7 +57,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                         expectedHasPreviousPageResult: false);
             }
 
-            private static IContainer GetContainer() {
+            private static IContainer GetContainer()
+            {
 
                 var shipments = GetDummyShipments(new[] { 
                     Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
@@ -75,11 +79,13 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             }
         }
 
-        public class GetShipment {
+        public class GetShipment
+        {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_200_And_Shipment_If_Request_Authorized_And_Shipment_Exists() {
+                Returns_200_And_Shipment_If_Request_Authorized_And_Shipment_Exists()
+            {
 
                 // Arrange
                 Guid[] keys = new[] { 
@@ -93,8 +99,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 // Act
                 var shipmentDto = await IntegrationTestHelper
                     .GetResponseMessageBodyAsync<ShipmentDto>(
-                        configAndRequest.Item1, 
-                        configAndRequest.Item2, 
+                        configAndRequest.Item1,
+                        configAndRequest.Item2,
                         HttpStatusCode.OK);
 
                 // Assert
@@ -103,8 +109,9 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_404_If_Request_Authorized_But_Shipment_Does_Not_Exist() {
-                
+                Returns_404_If_Request_Authorized_But_Shipment_Does_Not_Exist()
+            {
+
                 // Arrange
                 Guid[] keys = new[] { 
                     Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
@@ -123,8 +130,9 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
             }
 
-            private static Tuple<HttpConfiguration, HttpRequestMessage> 
-                GetConfigAndRequestMessage(Guid[] keys, Guid requestKey) {
+            private static Tuple<HttpConfiguration, HttpRequestMessage>
+                GetConfigAndRequestMessage(Guid[] keys, Guid requestKey)
+            {
 
                 var config = IntegrationTestHelper
                     .GetInitialIntegrationTestConfig(GetContainer(keys));
@@ -142,7 +150,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 return Tuple.Create(config, request);
             }
 
-            private static IContainer GetContainer(Guid[] keys) {
+            private static IContainer GetContainer(Guid[] keys)
+            {
 
                 var shipments = GetDummyShipments(keys);
                 var shipmentSrvMock = GetShipmentSrvMock(shipments);
@@ -150,7 +159,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 return GetContainerThroughMock(shipmentSrvMock);
             }
 
-            private static Mock<IShipmentService> GetShipmentSrvMock(IEnumerable<Shipment> shipments) {
+            private static Mock<IShipmentService> GetShipmentSrvMock(IEnumerable<Shipment> shipments)
+            {
 
                 Mock<IShipmentService> shipmentSrvMock = new Mock<IShipmentService>();
                 shipmentSrvMock.Setup(ss => ss.GetShipment(
@@ -162,11 +172,13 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             }
         }
 
-        public class PostShipment {
+        public class PostShipment
+        {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_201_And_Shipment_If_Request_Authorized_And_Success() {
+                Returns_201_And_Shipment_If_Request_Authorized_And_Success()
+            {
 
                 // Arange
                 Guid[] availableShipmentTypeKeys = new[] { 
@@ -176,7 +188,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 var config = IntegrationTestHelper
                     .GetInitialIntegrationTestConfig(GetContainer(availableShipmentTypeKeys));
 
-                var shipmentRequestModel = new ShipmentRequestModel {
+                var shipmentRequestModel = new ShipmentRequestModel
+                {
                     ShipmentTypeKey = availableShipmentTypeKeys[1],
                     AffiliateKey = Guid.NewGuid(),
                     Price = 12.23M,
@@ -218,7 +231,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_409_If_Request_Authorized_But_Conflicted() {
+                Returns_409_If_Request_Authorized_But_Conflicted()
+            {
 
                 // Arange
                 Guid[] availableShipmentTypeKeys = new[] { 
@@ -228,7 +242,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 var config = IntegrationTestHelper
                     .GetInitialIntegrationTestConfig(GetContainer(availableShipmentTypeKeys));
 
-                var shipmentRequestModel = new ShipmentRequestModel {
+                var shipmentRequestModel = new ShipmentRequestModel
+                {
                     ShipmentTypeKey = Guid.NewGuid(),
                     AffiliateKey = Guid.NewGuid(),
                     Price = 12.23M,
@@ -265,7 +280,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_400_If_Request_Authorized_But_Invalid() {
+                Returns_400_If_Request_Authorized_But_Invalid()
+            {
 
                 // Arange
                 Guid[] availableShipmentTypeKeys = new[] { 
@@ -275,7 +291,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 var config = IntegrationTestHelper
                     .GetInitialIntegrationTestConfig(GetContainer(availableShipmentTypeKeys));
 
-                var shipmentRequestModel = new ShipmentRequestModel {
+                var shipmentRequestModel = new ShipmentRequestModel
+                {
                     ReceiverName = "ANameWhichIsMoreThan50CharsANameWhichIsMoreThan50Chars",
                     ReceiverSurname = "ASurnameWhichIsMoreThan50CharsASurnameWhichIsMoreThan50Chars",
                     ReceiverAddress = "AnAddressWhichIsMoreThan50CharsAnAddressWhichIsMoreThan50Chars",
@@ -330,7 +347,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_400_If_Request_Authorized_But_Message_Body_Is_Empty() {
+                Returns_400_If_Request_Authorized_But_Message_Body_Is_Empty()
+            {
 
                 // Arange
                 Guid[] availableShipmentTypeKeys = new[] { 
@@ -361,14 +379,16 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 Assert.NotNull(requestModelError);
             }
 
-            private static IContainer GetContainer() {
+            private static IContainer GetContainer()
+            {
 
                 return GetContainer(new[] { 
                     Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
                 });
             }
 
-            private static IContainer GetContainer(Guid[] availableShipmentTypeKeys) {
+            private static IContainer GetContainer(Guid[] availableShipmentTypeKeys)
+            {
 
                 var shipments = GetDummyShipments(new[] { 
                     Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
@@ -379,7 +399,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             }
 
             private static Mock<IShipmentService> GetShipmentSrvMock(
-                IEnumerable<Shipment> shipments) {
+                IEnumerable<Shipment> shipments)
+            {
 
                 return GetShipmentSrvMock(shipments, availableShipmentTypeKeys: new[] { 
                     Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
@@ -387,7 +408,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             }
 
             private static Mock<IShipmentService> GetShipmentSrvMock(
-                IEnumerable<Shipment> shipments, Guid[] availableShipmentTypeKeys) {
+                IEnumerable<Shipment> shipments, Guid[] availableShipmentTypeKeys)
+            {
 
                 Mock<IShipmentService> shipmentSrvMock = new Mock<IShipmentService>();
                 shipmentSrvMock.Setup(ss => ss.GetShipment(
@@ -399,11 +421,13 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 shipmentSrvMock.Setup(ss => ss.AddShipment(
                         It.IsAny<Shipment>()
                     )
-                ).Returns<Shipment>(shipment => {
-                    
+                ).Returns<Shipment>(shipment =>
+                {
+
                     shipment.Key = Guid.NewGuid();
                     shipment.CreatedOn = DateTime.Now;
-                    shipment.ShipmentType = new ShipmentType {
+                    shipment.ShipmentType = new ShipmentType
+                    {
                         Key = availableShipmentTypeKeys[1],
                         Name = "Small",
                         Price = 4.19M,
@@ -414,14 +438,15 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                         new ShipmentState { Key = Guid.NewGuid(), ShipmentKey = shipment.Key, ShipmentStatus = ShipmentStatus.Ordered }
                     };
 
-                    return new OperationResult<Shipment>(true) {
+                    return new OperationResult<Shipment>(true)
+                    {
                         Entity = shipment
                     };
                 });
 
                 // For the invalid result
                 shipmentSrvMock.Setup(ss => ss.AddShipment(
-                        It.Is<Shipment>(s => 
+                        It.Is<Shipment>(s =>
                             !availableShipmentTypeKeys.Contains(
                                 s.ShipmentTypeKey
                             )
@@ -433,11 +458,13 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             }
         }
 
-        public class PutShipment {
+        public class PutShipment
+        {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_404_If_Request_Authorized_But_Shipment_Does_Not_Exist() {
+                Returns_404_If_Request_Authorized_But_Shipment_Does_Not_Exist()
+            {
 
                 // Arrange
                 Guid[] keys = new[] { 
@@ -447,7 +474,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 var config = IntegrationTestHelper
                     .GetInitialIntegrationTestConfig(GetContainer(keys));
 
-                var shipmentRequestModel = new ShipmentUpdateRequestModel {
+                var shipmentRequestModel = new ShipmentUpdateRequestModel
+                {
                     Price = 12.23M,
                     ReceiverName = "Receiver 1 Name",
                     ReceiverSurname = "Receiver 1 Surname",
@@ -482,7 +510,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_400_If_Request_Shipment_But_Invalid() {
+                Returns_400_If_Request_Shipment_But_Invalid()
+            {
 
                 // Arrange
                 Guid[] keys = new[] { 
@@ -492,7 +521,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 var config = IntegrationTestHelper
                     .GetInitialIntegrationTestConfig(GetContainer(keys));
 
-                var shipmentRequestModel = new ShipmentUpdateRequestModel {
+                var shipmentRequestModel = new ShipmentUpdateRequestModel
+                {
                     ReceiverName = "ANameWhichIsMoreThan50CharsANameWhichIsMoreThan50Chars",
                     ReceiverSurname = "ASurnameWhichIsMoreThan50CharsASurnameWhichIsMoreThan50Chars",
                     ReceiverAddress = "AnAddressWhichIsMoreThan50CharsAnAddressWhichIsMoreThan50Chars",
@@ -543,7 +573,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_200_And_Updated_Shipment_If_Request_Authorized_And_Request_Is_Valid() {
+                Returns_200_And_Updated_Shipment_If_Request_Authorized_And_Request_Is_Valid()
+            {
 
                 // Arrange
                 Guid[] keys = new[] { 
@@ -556,7 +587,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                     .GetInitialIntegrationTestConfig(
                         GetContainerThroughMock(shipmentSrvMock));
 
-                var shipmentRequestModel = new ShipmentUpdateRequestModel {
+                var shipmentRequestModel = new ShipmentUpdateRequestModel
+                {
                     Price = 12.23M,
                     ReceiverName = "Receiver 1 Name",
                     ReceiverSurname = "Receiver 1 Surname",
@@ -598,7 +630,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_400_If_Request_Authorized_But_Message_Body_Is_Empty() {
+                Returns_400_If_Request_Authorized_But_Message_Body_Is_Empty()
+            {
 
                 // Arrange
                 Guid[] keys = new[] { 
@@ -630,7 +663,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 Assert.NotNull(requestModelError);
             }
 
-            private static IContainer GetContainer(Guid[] keys) {
+            private static IContainer GetContainer(Guid[] keys)
+            {
 
                 var shipments = GetDummyShipments(keys);
                 var shipmentSrvMock = GetShipmentSrvMock(shipments);
@@ -638,7 +672,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 return GetContainerThroughMock(shipmentSrvMock);
             }
 
-            private static Mock<IShipmentService> GetShipmentSrvMock(IEnumerable<Shipment> shipments) {
+            private static Mock<IShipmentService> GetShipmentSrvMock(IEnumerable<Shipment> shipments)
+            {
 
                 Mock<IShipmentService> shipmentSrvMock = new Mock<IShipmentService>();
                 shipmentSrvMock.Setup(ss => ss.GetShipment(
@@ -655,11 +690,13 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             }
         }
 
-        public class DeleteShipment {
+        public class DeleteShipment
+        {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_404_If_Request_Authorized_But_Shipment_Does_Not_Exist() {
+                Returns_404_If_Request_Authorized_But_Shipment_Does_Not_Exist()
+            {
 
                 // Arrange
                 Guid[] keys = new[] { 
@@ -689,7 +726,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_204_If_Request_Authorized_And_Shipment_Is_Removeable() {
+                Returns_204_If_Request_Authorized_And_Shipment_Is_Removeable()
+            {
 
                 // Arrange
                 Guid[] keys = new[] { 
@@ -725,7 +763,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
 
             [Fact, NullCurrentPrincipal]
             public async Task
-                Returns_409_If_Request_Authorized_But_Shipment_Is_Not_Removeable() {
+                Returns_409_If_Request_Authorized_But_Shipment_Is_Not_Removeable()
+            {
 
                 // Arrange
                 Guid[] keys = new[] { 
@@ -759,7 +798,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 Assert.Equal(HttpStatusCode.Conflict, response.StatusCode);
             }
 
-            private static IContainer GetContainer(Guid[] keys) {
+            private static IContainer GetContainer(Guid[] keys)
+            {
 
                 var shipments = GetDummyShipments(keys);
                 var shipmentSrvMock = GetShipmentSrvMock(shipments);
@@ -767,12 +807,14 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                 return GetContainer(GetShipmentSrvMock(shipments));
             }
 
-            private static IContainer GetContainer(Mock<IShipmentService> shipmentSrvMock) {
+            private static IContainer GetContainer(Mock<IShipmentService> shipmentSrvMock)
+            {
 
                 return GetContainerThroughMock(shipmentSrvMock);
             }
 
-            private static Mock<IShipmentService> GetShipmentSrvMock(IEnumerable<Shipment> shipments) {
+            private static Mock<IShipmentService> GetShipmentSrvMock(IEnumerable<Shipment> shipments)
+            {
 
                 Mock<IShipmentService> shipmentSrvMock = new Mock<IShipmentService>();
                 shipmentSrvMock.Setup(ss => ss.GetShipment(
@@ -784,15 +826,18 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             }
         }
 
-        private static IEnumerable<Shipment> GetDummyShipments(Guid[] keys) {
+        private static IEnumerable<Shipment> GetDummyShipments(Guid[] keys)
+        {
 
             var shipmentTypeKeys = new Guid[] { 
                 Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()
             };
 
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 3; i++)
+            {
 
-                yield return new Shipment {
+                yield return new Shipment
+                {
                     Key = keys[i],
                     AffiliateKey = Guid.NewGuid(),
                     ShipmentTypeKey = shipmentTypeKeys[i],
@@ -806,7 +851,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
                     ReceiverZipCode = "12345",
                     ReceiverEmail = "foo@example.com",
                     CreatedOn = DateTime.Now,
-                    ShipmentType = new ShipmentType {
+                    ShipmentType = new ShipmentType
+                    {
                         Key = shipmentTypeKeys[i],
                         Name = "Small",
                         Price = 4.19M,
@@ -820,7 +866,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             }
         }
 
-        private static ContainerBuilder GetInitialContainerBuilder() {
+        private static ContainerBuilder GetInitialContainerBuilder()
+        {
 
             var builder = IntegrationTestHelper
                 .GetEmptyContainerBuilder();
@@ -835,7 +882,8 @@ namespace PingYourPackage.API.Test.Integration.Controllers {
             return builder;
         }
 
-        private static IContainer GetContainerThroughMock(Mock<IShipmentService> shipmentSrvMock) {
+        private static IContainer GetContainerThroughMock(Mock<IShipmentService> shipmentSrvMock)
+        {
 
             var containerBuilder = GetInitialContainerBuilder();
 

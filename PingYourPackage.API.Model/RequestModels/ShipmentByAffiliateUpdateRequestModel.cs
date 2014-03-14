@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingYourPackage.API.Model.RequestModels {
+namespace PingYourPackage.API.Model.RequestModels
+{
 
-    public class ShipmentByAffiliateUpdateRequestModel : ShipmentBaseRequestModel {
+    public class ShipmentByAffiliateUpdateRequestModel : ShipmentBaseRequestModel
+    {
 
     }
 }

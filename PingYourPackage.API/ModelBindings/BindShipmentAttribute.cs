@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 
-namespace PingYourPackage.API.ModelBinding {
+namespace PingYourPackage.API.ModelBinding
+{
 
-    public class BindShipmentAttribute : ParameterBindingAttribute {
+    public class BindShipmentAttribute : ParameterBindingAttribute
+    {
 
         public override HttpParameterBinding GetBinding(
-            HttpParameterDescriptor parameter) {
+            HttpParameterDescriptor parameter)
+        {
 
             return new ShipmentParameterBinding(parameter);
         }

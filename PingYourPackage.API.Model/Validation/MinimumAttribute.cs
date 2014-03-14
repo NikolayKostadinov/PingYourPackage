@@ -8,16 +8,18 @@ using System.Threading.Tasks;
 
 namespace PingYourPackage.API.Model.Validation
 {
+
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     public class MinimumAttribute : ValidationAttribute
     {
-        private readonly int minimumValue;
+
+        private readonly int _minimumValue;
 
         public MinimumAttribute(int minimum) :
             base(errorMessage: "The {0} field value must be minimum {1}.")
         {
 
-            this.minimumValue = minimum;
+            _minimumValue = minimum;
         }
 
         public override string FormatErrorMessage(string name)
@@ -27,7 +29,7 @@ namespace PingYourPackage.API.Model.Validation
                 CultureInfo.CurrentCulture,
                 base.ErrorMessageString,
                 name,
-                this.minimumValue);
+                _minimumValue);
         }
 
         public override bool IsValid(object value)
@@ -37,7 +39,7 @@ namespace PingYourPackage.API.Model.Validation
             if (value != null && int.TryParse(value.ToString(), out intValue))
             {
 
-                return (intValue >= this.minimumValue);
+                return (intValue >= _minimumValue);
             }
 
             return false;

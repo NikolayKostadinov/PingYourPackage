@@ -11,10 +11,12 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace PingYourPackage.API.Controllers {
+namespace PingYourPackage.API.Controllers
+{
 
     [Authorize(Roles = "Admin,Employee")]
-    public class ShipmentStatesController : ApiController {
+    public class ShipmentStatesController : ApiController
+    {
 
         // Here, inside this controller, we are sure that the
         // requested shipment exists. As only Admins and Employees 
@@ -22,24 +24,28 @@ namespace PingYourPackage.API.Controllers {
 
         private readonly IShipmentService _shipmentService;
 
-        public ShipmentStatesController(IShipmentService shipmentService) {
+        public ShipmentStatesController(IShipmentService shipmentService)
+        {
 
             _shipmentService = shipmentService;
         }
 
-        public IEnumerable<ShipmentStateDto> GetShipmentStates(Guid key) {
+        public IEnumerable<ShipmentStateDto> GetShipmentStates(Guid key)
+        {
 
             var shipmentStates = _shipmentService.GetShipmentStates(key);
             return shipmentStates.Select(x => x.ToShipmentStateDto());
         }
 
         [EmptyParameterFilter("requestModel")]
-        public HttpResponseMessage PostShipmentState(Guid key, ShipmentStateRequestModel requestModel) {
+        public HttpResponseMessage PostShipmentState(Guid key, ShipmentStateRequestModel requestModel)
+        {
 
             var createdShipmentState = _shipmentService.AddShipmentState(
                 key, RetrieveShipmentStatus(requestModel.ShipmentStatus));
 
-            if (!createdShipmentState.IsSuccess) {
+            if (!createdShipmentState.IsSuccess)
+            {
 
                 return new HttpResponseMessage(HttpStatusCode.Conflict);
             }
@@ -50,7 +56,8 @@ namespace PingYourPackage.API.Controllers {
             return response;
         }
 
-        private ShipmentStatus RetrieveShipmentStatus(string value) {
+        private ShipmentStatus RetrieveShipmentStatus(string value)
+        {
 
             return (ShipmentStatus)Enum
                 .Parse(typeof(ShipmentStatus), value, true);

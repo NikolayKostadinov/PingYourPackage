@@ -1,15 +1,21 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using System.Reflection;
+using System.Web;
 using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
-using PingYourPackage.Domain.Entities.Core;
+using PingYourPackage.Domain.Entities;
 using PingYourPackage.Domain.Services;
 
 namespace PingYourPackage.API.Config
 {
+
     public class AutofacWebAPI
     {
+
         public static void Initialize(HttpConfiguration config)
         {
 

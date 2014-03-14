@@ -1,9 +1,11 @@
 ﻿using System;
 using WebApiDoodle.Net.Http.Client.Model;
 
-namespace PingYourPackage.API.Model.Dtos {
-    
-    public class AffiliateDto : IDto {
+namespace PingYourPackage.API.Model.Dtos
+{
+
+    public class AffiliateDto : IDto
+    {
 
         public Guid Key { get; set; }
         public string CompanyName { get; set; }

@@ -1,20 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading;
+using System.Text;
 using System.Threading.Tasks;
+using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using System.Web.Http.Routing;
-using PingYourPackage.API.Http;
-using PingYourPackage.Domain.Entities;
 using PingYourPackage.Domain.Services;
+using System.Threading;
+using System.Security.Principal;
+using System.Net;
+using PingYourPackage.Domain.Entities;
 
 namespace PingYourPackage.API.Filters
 {
+
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-    public class EnsureShipmentOwnershipAttribute : Attribute, IAuthorizationFilter {
+    public class EnsureShipmentOwnershipAttribute : Attribute, IAuthorizationFilter
+    {
 
         private const string ShipmentDictionaryKey = "__AffiliateShipmentsController_Shipment";
         public bool AllowMultiple { get { return false; } }
@@ -22,7 +26,8 @@ namespace PingYourPackage.API.Filters
         public Task<HttpResponseMessage> ExecuteAuthorizationFilterAsync(
             HttpActionContext actionContext,
             CancellationToken cancellationToken,
-            Func<Task<HttpResponseMessage>> continuation) {
+            Func<Task<HttpResponseMessage>> continuation)
+        {
 
             // We are here sure that the user is authanticated and request 
             // can be kept executing because the AuthorizeAttribute has 
@@ -44,14 +49,16 @@ namespace PingYourPackage.API.Filters
             Shipment shipment = shipmentService.GetShipment(shipmentKey);
 
             // Check the shipment existance
-            if (shipment == null) {
+            if (shipment == null)
+            {
 
                 return Task.FromResult(
                     new HttpResponseMessage(HttpStatusCode.NotFound));
             }
 
             // Check the shipment ownership
-            if (shipment.AffiliateKey != affiliateKey) {
+            if (shipment.AffiliateKey != affiliateKey)
+            {
 
                 // You might want to return "404 NotFound" response here 
                 // if you don't want to expose the existence of the shipment.
@@ -70,19 +77,22 @@ namespace PingYourPackage.API.Filters
             return continuation();
         }
 
-        private static Guid GetAffiliateKey(IHttpRouteData routeData) {
+        private static Guid GetAffiliateKey(IHttpRouteData routeData)
+        {
 
             var affiliateKey = routeData.Values["key"].ToString();
             return Guid.ParseExact(affiliateKey, "D");
         }
 
-        private static Guid GetShipmentKey(IHttpRouteData routeData, Uri requestUri) {
+        private static Guid GetShipmentKey(IHttpRouteData routeData, Uri requestUri)
+        {
 
             // We are sure at this point that the shipmentKey value has been
             // supplied (either through route or quesry string) because it 
             // wouldn't be possible for the request to arrive here if it wasn't.
             object shipmentKeyString;
-            if (routeData.Values.TryGetValue("shipmentKey", out shipmentKeyString)) {
+            if (routeData.Values.TryGetValue("shipmentKey", out shipmentKeyString))
+            {
 
                 return Guid.ParseExact(shipmentKeyString.ToString(), "D");
             }

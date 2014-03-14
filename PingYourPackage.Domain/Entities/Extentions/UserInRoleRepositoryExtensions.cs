@@ -1,15 +1,20 @@
-﻿namespace PingYourPackage.Domain.Entities {
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-    using System;
-    using System.Linq;
-    using PingYourPackage.Domain.Entities.Core;
+namespace PingYourPackage.Domain.Entities
+{
 
-    public static class UserInRoleRepositoryExtensions {
+    public static class UserInRoleRepositoryExtensions
+    {
 
         public static bool IsUserInRole(
-            this IEntityRepository<UserInRole> userInRoleRepository, 
-            Guid userKey, 
-            Guid roleKey) {
+            this IEntityRepository<UserInRole> userInRoleRepository,
+            Guid userKey,
+            Guid roleKey)
+        {
 
             var userInRole = userInRoleRepository.GetAll()
                 .FirstOrDefault(

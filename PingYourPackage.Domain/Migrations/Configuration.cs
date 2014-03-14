@@ -5,16 +5,50 @@ namespace PingYourPackage.Domain.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
     using PingYourPackage.Domain.Entities;
+    using System.Collections.Generic;
 
-    public sealed class Configuration : DbMigrationsConfiguration<PingYourPackage.Domain.Entities.Core.EntitiesContext>
+    public sealed class Configuration : DbMigrationsConfiguration<PingYourPackage.Domain.Entities.EntitiesContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(PingYourPackage.Domain.Entities.Core.EntitiesContext context)
+        protected override void Seed(PingYourPackage.Domain.Entities.EntitiesContext context)
         {
+            //  This method will be called after migrating to the latest version.
+
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data. E.g.
+            //
+            //    context.People.AddOrUpdate(
+            //      p => p.FullName,
+            //      new Person { FullName = "Andrew Peters" },
+            //      new Person { FullName = "Brice Lambson" },
+            //      new Person { FullName = "Rowan Miller" }
+            //    );
+            //
+
+            // plain: tugberk
+            // salt: 7aX+miiI89BYmJ7HQlphhw==
+            // pass: E5vc4dPsYpVo+IcubmKRMmzDj/ZBt/JBc1l39BUVCGc=
+
+            // plain: EmployeeA
+            // salt: nRJiG0JOfQKCZsIRtZgBwQ==
+            // pass: opl6+bseDEaY6JvArJ1TJ99n6aJA/EJ9F5pMKALtdG8=
+
+            // plain: CompanyA
+            // salt: pPDYi4MNi/Ublpq5SlxmkA==
+            // pass: Y8/YPnSnSwr8Zh7RVwRF4pr+AtRzr+JuHPLmkmS5Z3s=
+
+            // plain: CompanyB
+            // salt: GsjIcWEnzsnWnJ6zqF2k2Q==
+            // pass: Nj8ByKH8hn356R/lDed0i3Z9hPFo4EOrCainXL6iYek=
+
+            // plain: CompanyC
+            // salt: uWp3KeQhKyHAUuK2rT1FjQ==
+            // pass: K6cEbRcT1YWUvJsxD/R6oFtHJyWocZZYcdAkkWHy5pk=
+
             Guid[] roleKeys = new[] { 
                 Guid.Parse("6d4cbf5b-8d2d-4b5a-85a2-8fb9dc841aee"), 
                 Guid.Parse("ea1b58fe-1c28-4406-ac79-5e685c98eb38"), 

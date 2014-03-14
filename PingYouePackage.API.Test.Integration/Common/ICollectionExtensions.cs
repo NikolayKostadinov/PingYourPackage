@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace PingYourPackage.API.Test.Common
+namespace System.Collections.Generic
 {
+
     internal static class ICollectionExtensions
     {
 

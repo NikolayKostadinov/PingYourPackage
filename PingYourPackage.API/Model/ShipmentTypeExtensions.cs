@@ -6,13 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingYourPackage.API.Model {
-    
-    internal static class ShipmentTypeExtensions {
+namespace PingYourPackage.API.Model
+{
 
-        internal static ShipmentTypeDto ToShipmentTypeDto(this ShipmentType shipmentType) {
+    internal static class ShipmentTypeExtensions
+    {
 
-            return new ShipmentTypeDto { 
+        internal static ShipmentTypeDto ToShipmentTypeDto(this ShipmentType shipmentType)
+        {
+
+            return new ShipmentTypeDto
+            {
 
                 Key = shipmentType.Key,
                 Name = shipmentType.Name,

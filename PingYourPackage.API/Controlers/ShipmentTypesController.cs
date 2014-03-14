@@ -11,21 +11,25 @@ using System.Net.Http;
 using System.Web.Http;
 using WebApiDoodle.Net.Http.Client.Model;
 
-namespace PingYourPackage.API.Controllers {
+namespace PingYourPackage.API.Controllers
+{
 
-    public class ShipmentTypesController : ApiController {
+    public class ShipmentTypesController : ApiController
+    {
 
         private readonly IShipmentService _shipmentService;
 
         public ShipmentTypesController(
-            IShipmentService shipmentService) {
+            IShipmentService shipmentService)
+        {
 
             _shipmentService = shipmentService;
         }
 
         [Authorize]
         public PaginatedDto<ShipmentTypeDto> GetShipmentTypes(
-            PaginatedRequestCommand cmd) {
+            PaginatedRequestCommand cmd)
+        {
 
             var shipmentTypes = _shipmentService.GetShipmentTypes(
                 cmd.Page, cmd.Take);
@@ -35,10 +39,12 @@ namespace PingYourPackage.API.Controllers {
         }
 
         [Authorize]
-        public ShipmentTypeDto GetShipmentType(Guid key) {
+        public ShipmentTypeDto GetShipmentType(Guid key)
+        {
 
             var shipmetType = _shipmentService.GetShipmentType(key);
-            if (shipmetType == null) {
+            if (shipmetType == null)
+            {
 
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
@@ -49,12 +55,14 @@ namespace PingYourPackage.API.Controllers {
         [Authorize(Roles = "Admin,Employee")]
         [EmptyParameterFilter("requestModel")]
         public HttpResponseMessage PostShipmentType(
-            ShipmentTypeRequestModel requestModel) {
+            ShipmentTypeRequestModel requestModel)
+        {
 
             var createdShipmentTypeResult = _shipmentService
                 .AddShipmentType(requestModel.ToShipmentType());
 
-            if (!createdShipmentTypeResult.IsSuccess) {
+            if (!createdShipmentTypeResult.IsSuccess)
+            {
 
                 return new HttpResponseMessage(HttpStatusCode.Conflict);
             }
@@ -72,10 +80,12 @@ namespace PingYourPackage.API.Controllers {
         [EmptyParameterFilter("requestModel")]
         public ShipmentTypeDto PutShipmentType(
             Guid key,
-            ShipmentTypeRequestModel requestModel) {
+            ShipmentTypeRequestModel requestModel)
+        {
 
             var shipmentType = _shipmentService.GetShipmentType(key);
-            if (shipmentType == null) {
+            if (shipmentType == null)
+            {
 
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }

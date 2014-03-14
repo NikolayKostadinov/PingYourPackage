@@ -1,18 +1,19 @@
-﻿namespace PingYourPackage.Domain.Entities
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PingYourPackage.Domain.Entities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Linq;
-    using PingYourPackage.Domain.Entities.Core;
+
     public class Shipment : IEntity
     {
 
         [Key]
         public Guid Key { get; set; }
-
         public Guid AffiliateKey { get; set; }
-
         public Guid ShipmentTypeKey { get; set; }
 
         public decimal Price { get; set; }
@@ -52,13 +53,12 @@
         public DateTime CreatedOn { get; set; }
 
         public Affiliate Affiliate { get; set; }
-
         public ShipmentType ShipmentType { get; set; }
-
         public virtual ICollection<ShipmentState> ShipmentStates { get; set; }
 
         public Shipment()
         {
+
             ShipmentStates = new HashSet<ShipmentState>();
         }
     }

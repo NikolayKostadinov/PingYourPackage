@@ -7,17 +7,20 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Xunit;
 
-namespace PingYourPackage.API.Test.Integration {
-    
-    internal static class IntegrationAuthTestHelper {
+namespace PingYourPackage.API.Test.Integration
+{
+
+    internal static class IntegrationAuthTestHelper
+    {
 
         internal static async Task TestRequestAuthorization(
-            HttpMethod httpMethod, 
+            HttpMethod httpMethod,
             string path,
-            string mediaType, 
+            string mediaType,
             string testUserName,
             string testPassword,
-            HttpStatusCode expectedStatus) {
+            HttpStatusCode expectedStatus)
+        {
 
             // Arrange
             var config = IntegrationTestHelper
@@ -37,7 +40,8 @@ namespace PingYourPackage.API.Test.Integration {
             Assert.Equal(expectedStatus, response.StatusCode);
         }
 
-        private static IContainer GetInitialServices() {
+        private static IContainer GetInitialServices()
+        {
 
             var builder = IntegrationTestHelper.GetEmptyContainerBuilder();
 

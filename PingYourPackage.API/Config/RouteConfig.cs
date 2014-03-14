@@ -1,10 +1,11 @@
-﻿namespace PingYourPackage.API.Config
+﻿using PingYourPackage.API.Dispatcher;
+using PingYourPackage.API.Routing;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Dispatcher;
+
+namespace PingYourPackage.API.Config
 {
-    using PingYourPackage.API.Dispatcher;
-    using PingYourPackage.API.Routing;
-    using System.Net.Http;
-    using System.Web.Http;
-    using System.Web.Http.Dispatcher;
 
     public class RouteConfig
     {

@@ -6,18 +6,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingYourPackage.API.Model {
-    
-    internal static class RoleExtensions {
+namespace PingYourPackage.API.Model
+{
 
-        internal static RoleDto ToRoleDto(this Role role) {
+    internal static class RoleExtensions
+    {
 
-            if (role == null) {
+        internal static RoleDto ToRoleDto(this Role role)
+        {
+
+            if (role == null)
+            {
 
                 throw new ArgumentNullException("role");
             }
 
-            return new RoleDto { 
+            return new RoleDto
+            {
                 Key = role.Key,
                 Name = role.Name
             };

@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingYourPackage.API.Model.RequestCommands {
+namespace PingYourPackage.API.Model.RequestCommands
+{
 
-    public interface IRequestCommand {
+    public interface IRequestCommand
+    {
 
     }
 }

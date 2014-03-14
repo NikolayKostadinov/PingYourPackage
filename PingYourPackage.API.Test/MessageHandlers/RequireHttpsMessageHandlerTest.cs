@@ -1,17 +1,20 @@
-﻿namespace PingYourPackage.API.Test.MessageHandlers
+﻿using PingYourPackage.API.MessageHandlers;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using PingYourPackage.API.Test.TestHelpers;
+using Xunit;
+
+namespace PingYourPackage.API.Test.MessageHandlers
 {
-    using PingYourPackage.API.MessageHandlers;
-    using PingYourPackage.API.Test.TestHelpers;
-    using System.Net;
-    using System.Net.Http;
-    using System.Threading.Tasks;
-    using Xunit;
 
     public class RequireHttpsMessageHandlerTest
     {
+
         [Fact]
-        public async Task ReturnsForbiddenIfRequestIsNotOverHttps()
+        public async Task Returns_Forbidden_If_Request_Is_Not_Over_HTTPS()
         {
+
             // Arange
             var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:8080");
             var requireHtttpsMessageHandler = new RequireHttpsMessageHandler();
@@ -24,8 +27,9 @@
         }
 
         [Fact]
-        public async Task ReturnsDelegatedStatusCodeWhenRequestIsOverHttps()
+        public async Task Returns_Delegated_StatusCode_When_Request_Is_Over_HTTPS()
         {
+
             // Arange
             var request = new HttpRequestMessage(HttpMethod.Get, "https://localhost:8080");
             var requireHtttpsMessageHandler = new RequireHttpsMessageHandler();

@@ -1,20 +1,21 @@
-﻿namespace PingYourPackage.Domain.Services
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Principal;
+using System.Text;
+using System.Threading.Tasks;
+using PingYourPackage.Domain.Entities;
+
+namespace PingYourPackage.Domain.Services
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Security.Principal;
-    using PingYourPackage.Domain.Entities;
-    using PingYourPackage.Domain.Entities.Core;
-    using PingYourPackage.Domain.Entities.Extentions;
 
     public class MembershipService : IMembershipService
     {
 
-        private readonly IEntityRepository<User> userRepository;
-        private readonly IEntityRepository<Role> roleRepository;
-        private readonly IEntityRepository<UserInRole> userInRoleRepository;
-        private readonly ICryptoService cryptoService;
+        private readonly IEntityRepository<User> _userRepository;
+        private readonly IEntityRepository<Role> _roleRepository;
+        private readonly IEntityRepository<UserInRole> _userInRoleRepository;
+        private readonly ICryptoService _cryptoService;
 
         public MembershipService(
             IEntityRepository<User> userRepository,
@@ -22,18 +23,21 @@
             IEntityRepository<UserInRole> userInRoleRepository,
             ICryptoService cryptoService)
         {
-            this.userRepository = userRepository;
-            this.roleRepository = roleRepository;
-            this.userInRoleRepository = userInRoleRepository;
-            this.cryptoService = cryptoService;
+
+            _userRepository = userRepository;
+            _roleRepository = roleRepository;
+            _userInRoleRepository = userInRoleRepository;
+            _cryptoService = cryptoService;
         }
 
         public ValidUserContext ValidateUser(string username, string password)
         {
+
             var userCtx = new ValidUserContext();
-            var user = userRepository.GetSingleByUsername(username);
-            if (user != null && IsUserValid(user, password))
+            var user = _userRepository.GetSingleByUsername(username);
+            if (user != null && isUserValid(user, password))
             {
+
                 var userRoles = GetUserRoles(user.Key);
                 userCtx.User = new UserWithRoles()
                 {
@@ -64,15 +68,17 @@
 
         public OperationResult<UserWithRoles> CreateUser(string username, string email, string password, string[] roles)
         {
-            var existingUser = userRepository.GetAll().Any(
+
+            var existingUser = _userRepository.GetAll().Any(
                 x => x.Name == username);
 
             if (existingUser)
             {
+
                 return new OperationResult<UserWithRoles>(false);
             }
 
-            var passwordSalt = cryptoService.GenerateSalt();
+            var passwordSalt = _cryptoService.GenerateSalt();
 
             var user = new User()
             {
@@ -80,12 +86,12 @@
                 Salt = passwordSalt,
                 Email = email,
                 IsLocked = false,
-                HashedPassword = cryptoService.EncryptPassword(password, passwordSalt),
+                HashedPassword = _cryptoService.EncryptPassword(password, passwordSalt),
                 CreatedOn = DateTime.Now
             };
 
-            userRepository.Add(user);
-            userRepository.Save();
+            _userRepository.Add(user);
+            _userRepository.Save();
 
             if (roles != null && roles.Length > 0)
             {
@@ -93,7 +99,7 @@
                 foreach (var roleName in roles)
                 {
 
-                    AddUserToRole(user, roleName);
+                    addUserToRole(user, roleName);
                 }
             }
 
@@ -103,29 +109,35 @@
             };
         }
 
-        public UserWithRoles UpdateUser(User user, string username, string email)
+        public UserWithRoles UpdateUser(
+            User user,
+            string username,
+            string email)
         {
+
             user.Name = username;
             user.Email = email;
             user.LastUpdatedOn = DateTime.Now;
 
-            userRepository.Edit(user);
-            userRepository.Save();
+            _userRepository.Edit(user);
+            _userRepository.Save();
 
             return GetUserWithRoles(user);
         }
 
         public bool ChangePassword(string username, string oldPassword, string newPassword)
         {
-            var user = userRepository.GetSingleByUsername(username);
 
-            if (user != null && IsPasswordValid(user, oldPassword))
+            var user = _userRepository.GetSingleByUsername(username);
+
+            if (user != null && isPasswordValid(user, oldPassword))
             {
-                user.HashedPassword =
-                    cryptoService.EncryptPassword(newPassword, user.Salt);
 
-                userRepository.Edit(user);
-                userRepository.Save();
+                user.HashedPassword =
+                    _cryptoService.EncryptPassword(newPassword, user.Salt);
+
+                _userRepository.Edit(user);
+                _userRepository.Save();
 
                 return true;
             }
@@ -135,10 +147,12 @@
 
         public bool AddToRole(string username, string role)
         {
-            var user = userRepository.GetSingleByUsername(username);
+
+            var user = _userRepository.GetSingleByUsername(username);
             if (user != null)
             {
-                AddUserToRole(user, role);
+
+                addUserToRole(user, role);
                 return true;
             }
 
@@ -148,11 +162,11 @@
         public bool AddToRole(Guid userKey, string role)
         {
 
-            var user = userRepository.GetSingle(userKey);
+            var user = _userRepository.GetSingle(userKey);
             if (user != null)
             {
 
-                AddUserToRole(user, role);
+                addUserToRole(user, role);
                 return true;
             }
 
@@ -162,21 +176,21 @@
         public bool RemoveFromRole(string username, string role)
         {
 
-            var user = userRepository.GetSingleByUsername(username);
-            var roleEntity = roleRepository.GetSingleByRoleName(role);
+            var user = _userRepository.GetSingleByUsername(username);
+            var roleEntity = _roleRepository.GetSingleByRoleName(role);
 
             if (user != null && roleEntity != null)
             {
 
-                var userInRole = userInRoleRepository.GetAll()
+                var userInRole = _userInRoleRepository.GetAll()
                     .FirstOrDefault(x => x.RoleKey == roleEntity.Key
                         && x.UserKey == user.Key);
 
                 if (userInRole != null)
                 {
 
-                    userInRoleRepository.Delete(userInRole);
-                    userInRoleRepository.Save();
+                    _userInRoleRepository.Delete(userInRole);
+                    _userInRoleRepository.Save();
                 }
             }
 
@@ -186,25 +200,25 @@
         public IEnumerable<Role> GetRoles()
         {
 
-            return roleRepository.GetAll();
+            return _roleRepository.GetAll();
         }
 
         public Role GetRole(Guid key)
         {
 
-            return roleRepository.GetSingle(key);
+            return _roleRepository.GetSingle(key);
         }
 
         public Role GetRole(string name)
         {
 
-            return roleRepository.GetSingleByRoleName(name);
+            return _roleRepository.GetSingleByRoleName(name);
         }
 
         public PaginatedList<UserWithRoles> GetUsers(int pageIndex, int pageSize)
         {
 
-            var users = userRepository.Paginate<Guid>(pageIndex, pageSize, x => x.Key);
+            var users = _userRepository.Paginate<Guid>(pageIndex, pageSize, x => x.Key);
 
             return new PaginatedList<UserWithRoles>(
                 users.PageIndex,
@@ -220,41 +234,43 @@
         public UserWithRoles GetUser(Guid key)
         {
 
-            var user = userRepository.GetSingle(key);
+            var user = _userRepository.GetSingle(key);
             return GetUserWithRoles(user);
         }
 
         public UserWithRoles GetUser(string name)
         {
 
-            var user = userRepository.GetSingleByUsername(name);
+            var user = _userRepository.GetSingleByUsername(name);
             return GetUserWithRoles(user);
         }
 
         // Private helpers
 
-        private bool IsUserValid(User user, string password)
+        private bool isUserValid(User user, string password)
         {
-            if (IsPasswordValid(user, password))
+
+            if (isPasswordValid(user, password))
             {
+
                 return !user.IsLocked;
             }
 
             return false;
         }
 
-        private bool IsPasswordValid(User user, string password)
+        private bool isPasswordValid(User user, string password)
         {
 
             return string.Equals(
-                    cryptoService.EncryptPassword(
+                    _cryptoService.EncryptPassword(
                         password, user.Salt), user.HashedPassword);
         }
 
-        private void AddUserToRole(User user, string roleName)
+        private void addUserToRole(User user, string roleName)
         {
 
-            var role = roleRepository.GetSingleByRoleName(roleName);
+            var role = _roleRepository.GetSingleByRoleName(roleName);
             if (role == null)
             {
 
@@ -263,8 +279,8 @@
                     Name = roleName
                 };
 
-                roleRepository.Add(tempRole);
-                roleRepository.Save();
+                _roleRepository.Add(tempRole);
+                _roleRepository.Save();
                 role = tempRole;
             }
 
@@ -274,14 +290,14 @@
                 UserKey = user.Key
             };
 
-            userInRoleRepository.Add(userInRole);
-            userInRoleRepository.Save();
+            _userInRoleRepository.Add(userInRole);
+            _userInRoleRepository.Save();
         }
 
         private IEnumerable<Role> GetUserRoles(Guid userKey)
         {
 
-            var userInRoles = userInRoleRepository
+            var userInRoles = _userInRoleRepository
                 .FindBy(x => x.UserKey == userKey).ToList();
 
             if (userInRoles != null && userInRoles.Count > 0)
@@ -290,7 +306,7 @@
                 var userRoleKeys = userInRoles.Select(
                     x => x.RoleKey).ToArray();
 
-                var userRoles = roleRepository
+                var userRoles = _roleRepository
                     .FindBy(x => userRoleKeys.Contains(x.Key));
 
                 return userRoles;

@@ -6,23 +6,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingYourPackage.API.Model {
-    
-    internal static class UserWithRolesExtensions {
+namespace PingYourPackage.API.Model
+{
 
-        internal static UserDto ToUserDto(this UserWithRoles userWithRoles) {
+    internal static class UserWithRolesExtensions
+    {
 
-            if (userWithRoles == null) {
+        internal static UserDto ToUserDto(this UserWithRoles userWithRoles)
+        {
+
+            if (userWithRoles == null)
+            {
 
                 throw new ArgumentNullException("userWithRoles");
             }
 
-            if (userWithRoles.User == null) {
+            if (userWithRoles.User == null)
+            {
 
                 throw new ArgumentNullException("userWithRoles.User");
             }
 
-            return new UserDto { 
+            return new UserDto
+            {
                 Key = userWithRoles.User.Key,
                 Name = userWithRoles.User.Name,
                 Email = userWithRoles.User.Email,
