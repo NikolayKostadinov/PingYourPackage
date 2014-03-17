@@ -1,10 +1,8 @@
 ﻿using System;
 
-namespace PingYourPackage.API.Model.Dtos
-{
-
-    public class AffiliateMemberInfoDto
-    {
+namespace PingYourPackage.API.Model.Dtos {
+    
+    public class AffiliateMemberInfoDto {
 
         public string UserName { get; set; }
         public string Email { get; set; }

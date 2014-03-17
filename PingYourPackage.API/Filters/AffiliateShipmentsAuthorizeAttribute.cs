@@ -12,28 +12,23 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Routing;
 
-namespace PingYourPackage.API.Filters
-{
+namespace PingYourPackage.API.Filters {
 
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-    public class AffiliateShipmentsAuthorizeAttribute : AuthorizeAttribute
-    {
+    public class AffiliateShipmentsAuthorizeAttribute : AuthorizeAttribute {
 
-        public AffiliateShipmentsAuthorizeAttribute()
-        {
+        public AffiliateShipmentsAuthorizeAttribute() {
 
             base.Roles = "Affiliate";
         }
 
-        public override void OnAuthorization(HttpActionContext actionContext)
-        {
-
+        public override void OnAuthorization(HttpActionContext actionContext) {
+            
             base.OnAuthorization(actionContext);
 
             // If not authorized at all, don't bother checking for the 
             // user - affiliate relation
-            if (actionContext.Response == null)
-            {
+            if (actionContext.Response == null) { 
 
                 // We are here sure that the request has been authorized and 
                 // the user is in the Affiliate role. We also don't need 
@@ -47,8 +42,7 @@ namespace PingYourPackage.API.Filters
                 bool isAffiliateRelatedToUser =
                     shipmentService.IsAffiliateRelatedToUser(affiliateKey, principal.Identity.Name);
 
-                if (!isAffiliateRelatedToUser)
-                {
+                if (!isAffiliateRelatedToUser) {
 
                     // Set Unauthorized response as the user and 
                     // affiliate isn't related to each other. You might
@@ -59,8 +53,7 @@ namespace PingYourPackage.API.Filters
             }
         }
 
-        private static Guid GetAffiliateKey(IHttpRouteData routeData)
-        {
+        private static Guid GetAffiliateKey(IHttpRouteData routeData) {
 
             var affiliateKey = routeData.Values["key"].ToString();
             return Guid.ParseExact(affiliateKey, "D");

@@ -1,70 +1,110 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+<DirectedGraph GraphDirection="LeftToRight" Layout="Sugiyama" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
   <Nodes>
-    <Node Id="Autofac 3.0.1" Category="Package" Bounds="617.755,312,88.9300000000001,25.96" Label="Autofac 3.0.1" />
-    <Node Id="Autofac.WebApi 3.0.0" Category="Package" Bounds="306.115,168,133.77,25.96" Label="Autofac.WebApi 3.0.0" />
-    <Node Id="EntityFramework 5.0.0" Category="Package" Bounds="304.901666666667,56,136.196666666667,25.96" Label="EntityFramework 5.0.0" />
-    <Node Id="Microsoft.AspNet.WebApi 4.0.20710.0" Category="Package" Bounds="263.065,2.1316282072803E-14,219.87,25.96" Label="Microsoft.AspNet.WebApi 4.0.20710.0" />
-    <Node Id="Microsoft.AspNet.WebApi.Client 4.0.20710.0" Category="Package" Bounds="1105.46,212,252.846666666667,25.96" Label="Microsoft.AspNet.WebApi.Client 4.0.20710.0" />
-    <Node Id="Microsoft.AspNet.WebApi.Client 4.0.30506.0" Category="Package" Bounds="1105.46,156,252.846666666667,25.96" Label="Microsoft.AspNet.WebApi.Client 4.0.30506.0" />
-    <Node Id="Microsoft.AspNet.WebApi.Core 4.0.20710.0" Category="Package" Bounds="828.08,224,247.38,25.96" Label="Microsoft.AspNet.WebApi.Core 4.0.20710.0" />
-    <Node Id="Microsoft.AspNet.WebApi.Core 4.0.30506.0" Category="Package" Bounds="828.08,-1.4210854715202E-14,247.38,25.96" Label="Microsoft.AspNet.WebApi.Core 4.0.30506.0" />
-    <Node Id="Microsoft.AspNet.WebApi.WebHost 4.0.30506.0" Category="Package" Bounds="526.36,7.105427357601E-15,271.72,25.96" Label="Microsoft.AspNet.WebApi.WebHost 4.0.30506.0" />
-    <Node Id="Microsoft.Net.Http 2.0.20710.0" Category="Package" Bounds="1388.30666666667,212,181.45,25.96" Label="Microsoft.Net.Http 2.0.20710.0" />
-    <Node Id="Microsoft.Web.Infrastructure 1.0.0.0" Category="Package" Bounds="847.731666666667,56,208.076666666667,25.96" Label="Microsoft.Web.Infrastructure 1.0.0.0" />
-    <Node Id="Moq 4.0.10827" Category="Package" Bounds="323.675,280,98.65,25.96" Label="Moq 4.0.10827" />
-    <Node Id="Newtonsoft.Json 4.5.11" Category="Package" Bounds="1408.07,156,141.923333333333,25.96" Label="Newtonsoft.Json 4.5.11" />
-    <Node Id="PingYourPackage.API" Category="Project" Bounds="43.7466666666669,112,132.146666666667,25.96" Label="PingYourPackage.API" />
-    <Node Id="PingYourPackage.API.Model" Category="Project" Bounds="25.4183333333333,224,168.803333333333,25.96" Label="PingYourPackage.API.Model" />
-    <Node Id="PingYourPackage.API.WebHost" Category="Project" Bounds="17.8216666666667,3.5527136788005E-14,183.996666666667,25.96" Label="PingYourPackage.API.WebHost" />
-    <Node Id="PingYourPackage.Domain" Category="Project" Bounds="31.7816666666663,56,156.076666666667,25.96" Label="PingYourPackage.Domain" />
-    <Node Id="WebApiDoodle 2.0.1" Category="Package" Bounds="308.57,112,128.86,25.96" Label="WebApiDoodle 2.0.1" />
-    <Node Id="WebApiDoodle.Net.Http 2.0.1" Category="Package" Bounds="1143.34,268,177.086666666667,25.96" Label="WebApiDoodle.Net.Http 2.0.1" />
-    <Node Id="WebApiDoodle.Net.Http.Client.Model 2.0.1" Category="Package" Bounds="249.64,224,246.72,25.96" Label="WebApiDoodle.Net.Http.Client.Model 2.0.1" />
-    <Node Id="WebApiDoodle.Net.Http.Formatting 2.0.1" Category="Package" Bounds="832.725,112,238.09,25.96" Label="WebApiDoodle.Net.Http.Formatting 2.0.1" />
-    <Node Id="WebApiDoodle.Web 2.0.1" Category="Package" Bounds="584.22,168,156,25.96" Label="WebApiDoodle.Web 2.0.1" />
-    <Node Id="WebApiDoodle.Web.Meta 2.0.1" Category="Package" Bounds="858.856666666667,168,185.826666666667,25.96" Label="WebApiDoodle.Web.Meta 2.0.1" />
-    <Node Id="test\PingYouePackage.API.Test.Integration" Category="Project" Bounds="6.3703840721702,345.827302079092,219.64,25.96" Label="PingYouePackage.API.Test.Integration" UseManualLocation="True" />
-    <Node Id="test\PingYourPackage.API.Test" Category="Project" Bounds="31.585,168,156.47,25.96" Label="PingYourPackage.API.Test" />
-    <Node Id="xunit 1.9.1" Category="Package" Bounds="336.021666666667,336,73.9566666666667,25.96" Label="xunit 1.9.1" />
+    <Node Id="Autofac 3.0.1" Category="Package" Bounds="664.568333333334,500,88.9300000000001,25.96" Label="Autofac 3.0.1" />
+    <Node Id="Autofac 3.0.2" Category="Package" Bounds="664.568333333334,288,88.9300000000001,25.96" Label="Autofac 3.0.2" />
+    <Node Id="Autofac.Mvc4 3.0.0" Category="Package" Bounds="336.373333333334,600,120.066666666667,25.96" Label="Autofac.Mvc4 3.0.0" />
+    <Node Id="Autofac.WebApi 3.0.0" Category="Package" Bounds="329.521666666667,288,133.77,25.96" Label="Autofac.WebApi 3.0.0" />
+    <Node Id="Autofac.WebApi 3.0.1" Category="Package" Bounds="329.521666666667,456,133.77,25.96" Label="Autofac.WebApi 3.0.1" />
+    <Node Id="Client\PingYourPackage.API.Client" Category="Project" Bounds="27.2583333333337,544,165.123333333333,25.96" Label="PingYourPackage.API.Client" />
+    <Node Id="Client\PingYourPackage.API.Client.Web" Category="Project" Bounds="13.6883333333335,756,192.263333333333,25.96" Label="PingYourPackage.API.Client.Web" />
+    <Node Id="EntityFramework 5.0.0" Category="Package" Bounds="328.308333333334,56,136.196666666667,25.96" Label="EntityFramework 5.0.0" />
+    <Node Id="Microsoft.AspNet.Mvc 4.0.20710.0" Category="Package" Bounds="296.558333333334,856,199.696666666667,25.96" Label="Microsoft.AspNet.Mvc 4.0.20710.0" />
+    <Node Id="Microsoft.AspNet.Razor 2.0.20710.0" Category="Package" Bounds="894.811666666667,856,207.543333333333,25.96" Label="Microsoft.AspNet.Razor 2.0.20710.0" />
+    <Node Id="Microsoft.AspNet.Web.Optimization 1.0.0" Category="Package" Bounds="589.801666666668,756,238.463333333333,25.96" Label="Microsoft.AspNet.Web.Optimization 1.0.0" />
+    <Node Id="Microsoft.AspNet.WebApi 4.0.20710.0" Category="Package" Bounds="286.471666666667,0,219.87,25.96" Label="Microsoft.AspNet.WebApi 4.0.20710.0" />
+    <Node Id="Microsoft.AspNet.WebApi.Client 4.0.20710.0" Category="Package" Bounds="1152.27333333333,256,252.846666666667,25.96" Label="Microsoft.AspNet.WebApi.Client 4.0.20710.0" />
+    <Node Id="Microsoft.AspNet.WebApi.Client 4.0.30506.0" Category="Package" Bounds="1152.27333333333,200,252.846666666667,25.96" Label="Microsoft.AspNet.WebApi.Client 4.0.30506.0" />
+    <Node Id="Microsoft.AspNet.WebApi.Core 4.0.20710.0" Category="Package" Bounds="874.893333333334,200,247.38,25.96" Label="Microsoft.AspNet.WebApi.Core 4.0.20710.0" />
+    <Node Id="Microsoft.AspNet.WebApi.Core 4.0.30506.0" Category="Package" Bounds="874.893333333334,88,247.38,25.96" Label="Microsoft.AspNet.WebApi.Core 4.0.30506.0" />
+    <Node Id="Microsoft.AspNet.WebApi.WebHost 4.0.30506.0" Category="Package" Bounds="573.173333333334,88,271.72,25.96" Label="Microsoft.AspNet.WebApi.WebHost 4.0.30506.0" />
+    <Node Id="Microsoft.AspNet.WebPages 2.0.20710.0" Category="Package" Bounds="592.316666666668,812,233.433333333333,25.96" Label="Microsoft.AspNet.WebPages 2.0.20710.0" />
+    <Node Id="Microsoft.AspNet.WebPages.Data 2.0.20710.0" Category="Package" Bounds="578.670000000001,700,260.726666666667,25.96" Label="Microsoft.AspNet.WebPages.Data 2.0.20710.0" />
+    <Node Id="Microsoft.AspNet.WebPages.WebData 2.0.20710.0" Category="Package" Bounds="253.773333333334,712,285.266666666667,25.96" Label="Microsoft.AspNet.WebPages.WebData 2.0.20710.0" />
+    <Node Id="Microsoft.Net.Http 2.0.20710.0" Category="Package" Bounds="1435.12,200,181.45,25.96" Label="Microsoft.Net.Http 2.0.20710.0" />
+    <Node Id="Microsoft.Web.Infrastructure 1.0.0.0" Category="Package" Bounds="894.545000000001,744,208.076666666667,25.96" Label="Microsoft.Web.Infrastructure 1.0.0.0" />
+    <Node Id="Microsoft.jQuery.Unobtrusive.Validation 2.0.20710.0" Category="Package" Bounds="249.640000000001,912,293.533333333333,25.96" Label="Microsoft.jQuery.Unobtrusive.Validation 2.0.20710.0" />
+    <Node Id="Modernizr 2.5.3" Category="Package" Bounds="345.148333333334,656,102.516666666667,25.96" Label="Modernizr 2.5.3" />
+    <Node Id="Moq 4.0.10827" Category="Package" Bounds="347.081666666667,400,98.6500000000001,25.96" Label="Moq 4.0.10827" />
+    <Node Id="Newtonsoft.Json 4.5.11" Category="Package" Bounds="1454.88333333333,256,141.923333333333,25.96" Label="Newtonsoft.Json 4.5.11" />
+    <Node Id="PingYourPackage.API" Category="Project" Bounds="43.7466666666669,156,132.146666666667,25.96" Label="PingYourPackage.API" />
+    <Node Id="PingYourPackage.API.Model" Category="Project" Bounds="312.005000000001,232,168.803333333333,25.96" Label="PingYourPackage.API.Model" />
+    <Node Id="PingYourPackage.API.WebHost" Category="Project" Bounds="17.8216666666667,0,183.996666666667,25.96" Label="PingYourPackage.API.WebHost" />
+    <Node Id="PingYourPackage.Domain" Category="Project" Bounds="31.7816666666668,56,156.076666666667,25.96" Label="PingYourPackage.Domain" />
+    <Node Id="WebApiDoodle 2.0.1" Category="Package" Bounds="331.976666666667,112,128.86,25.96" Label="WebApiDoodle 2.0.1" />
+    <Node Id="WebApiDoodle.Net.Http 2.0.1" Category="Package" Bounds="1190.15333333333,44,177.086666666667,25.96" Label="WebApiDoodle.Net.Http 2.0.1" />
+    <Node Id="WebApiDoodle.Net.Http.Client 2.0.1" Category="Package" Bounds="291.375,544,210.063333333333,25.96" Label="WebApiDoodle.Net.Http.Client 2.0.1" />
+    <Node Id="WebApiDoodle.Net.Http.Client.Model 2.0.1" Category="Package" Bounds="585.673333333334,232,246.72,25.96" Label="WebApiDoodle.Net.Http.Client.Model 2.0.1" />
+    <Node Id="WebApiDoodle.Net.Http.Formatting 2.0.1" Category="Package" Bounds="879.538333333334,256,238.09,25.96" Label="WebApiDoodle.Net.Http.Formatting 2.0.1" />
+    <Node Id="WebApiDoodle.Web 2.0.1" Category="Package" Bounds="631.033333333334,144,156,25.96" Label="WebApiDoodle.Web 2.0.1" />
+    <Node Id="WebApiDoodle.Web.Meta 2.0.1" Category="Package" Bounds="905.670000000001,144,185.826666666667,25.96" Label="WebApiDoodle.Web.Meta 2.0.1" />
+    <Node Id="WebGrease 1.1.0" Category="Package" Bounds="944.285000000001,800,108.596666666667,25.96" Label="WebGrease 1.1.0" />
+    <Node Id="jQuery 1.7.1.1" Category="Package" Bounds="952.600000000001,912,91.9666666666667,25.96" Label="jQuery 1.7.1.1" />
+    <Node Id="jQuery.Validation 1.9.0.1" Category="Package" Bounds="635.080000000001,912,147.906666666667,25.96" Label="jQuery.Validation 1.9.0.1" />
+    <Node Id="test\PingYouePackage.API.Test.Integration" Category="Project" Bounds="0,488,219.64,25.96" Label="PingYouePackage.API.Test.Integration" />
+    <Node Id="test\PingYourPackage.API.Test" Category="Project" Bounds="31.585,212,156.47,25.96" Label="PingYourPackage.API.Test" />
+    <Node Id="xunit 1.9.1" Category="Package" Bounds="359.428333333334,344,73.9566666666667,25.96" Label="xunit 1.9.1" />
   </Nodes>
   <Links>
-    <Link Source="Autofac.WebApi 3.0.0" Target="Autofac 3.0.1" Category="Package Dependency" Bounds="437.551361083984,193.885055541992,171.464691162109,118.678970336914" />
-    <Link Source="Microsoft.AspNet.WebApi 4.0.20710.0" Target="Microsoft.AspNet.WebApi.WebHost 4.0.30506.0" Category="Package Dependency" Bounds="482.934997558594,12.9799995422363,34.4249877929688,0" />
-    <Link Source="Microsoft.AspNet.WebApi.Client 4.0.20710.0" Target="Microsoft.Net.Http 2.0.20710.0" Category="Package Dependency" Bounds="1358.306640625,224.979995727539,21,0" />
-    <Link Source="Microsoft.AspNet.WebApi.Client 4.0.20710.0" Target="Newtonsoft.Json 4.5.11" Category="Package Dependency" Bounds="1289.16882324219,183.948852539063,123.799926757813,28.0511474609375" />
-    <Link Source="Microsoft.AspNet.WebApi.Client 4.0.30506.0" Target="Microsoft.Net.Http 2.0.20710.0" Category="Package Dependency" Bounds="1289.16882324219,181.960006713867,123.799926757813,28.0511474609375" />
-    <Link Source="Microsoft.AspNet.WebApi.Client 4.0.30506.0" Target="Newtonsoft.Json 4.5.11" Category="Package Dependency" Bounds="1358.306640625,168.979995727539,40.7633056640625,0" />
-    <Link Source="Microsoft.AspNet.WebApi.Core 4.0.20710.0" Target="Microsoft.AspNet.WebApi.Client 4.0.20710.0" Category="Package Dependency" Bounds="1075.4599609375,230.781158447266,21.00830078125,0.899993896484375" />
-    <Link Source="Microsoft.AspNet.WebApi.Core 4.0.30506.0" Target="Microsoft.AspNet.WebApi.Client 4.0.30506.0" Category="Package Dependency" Bounds="1000.43304443359,25.9599990844727,206.898132324219,124.647880554199" />
-    <Link Source="Microsoft.AspNet.WebApi.WebHost 4.0.30506.0" Target="Microsoft.AspNet.WebApi.Core 4.0.30506.0" Category="Package Dependency" Bounds="798.080017089844,12.9799995422363,21,0" />
-    <Link Source="Microsoft.AspNet.WebApi.WebHost 4.0.30506.0" Target="Microsoft.Web.Infrastructure 1.0.0.0" Category="Package Dependency" Bounds="729.333557128906,25.9599990844727,146.486633300781,28.3310356140137" />
-    <Link Source="PingYourPackage.API" Target="Autofac.WebApi 3.0.0" Category="Installed Package" Bounds="170.821365356445,137.960006713867,132.37434387207,28.1668853759766" />
-    <Link Source="PingYourPackage.API" Target="EntityFramework 5.0.0" Category="Installed Package" Bounds="170.821365356445,83.8331069946289,132.37434387207,28.1668930053711" />
-    <Link Source="PingYourPackage.API" Target="WebApiDoodle 2.0.1" Category="Installed Package" Bounds="175.893325805664,124.980003356934,123.676681518555,0" />
-    <Link Source="PingYourPackage.API" Target="WebApiDoodle.Net.Http.Client.Model 2.0.1" Category="Installed Package" Bounds="140.320678710938,137.960006713867,193.897338867188,82.5157775878906" />
-    <Link Source="PingYourPackage.API.Model" Target="WebApiDoodle.Net.Http.Client.Model 2.0.1" Category="Installed Package" Bounds="194.221664428711,236.979995727539,46.4183349609375,0" />
-    <Link Source="PingYourPackage.API.WebHost" Target="EntityFramework 5.0.0" Category="Installed Package" Bounds="170.821365356445,25.9599990844727,132.37434387207,28.1668968200684" />
-    <Link Source="PingYourPackage.API.WebHost" Target="Microsoft.AspNet.WebApi 4.0.20710.0" Category="Installed Package" Bounds="201.818328857422,12.9799995422363,52.2466735839844,0" />
-    <Link Source="PingYourPackage.Domain" Target="EntityFramework 5.0.0" Category="Installed Package" Bounds="187.858337402344,68.9800033569336,108.043334960938,0" />
-    <Link Source="WebApiDoodle 2.0.1" Target="WebApiDoodle.Net.Http 2.0.1" Category="Package Dependency" Bounds="397.064575195313,137.960006713867,737.275390625,143.020004272461" />
-    <Link Source="WebApiDoodle 2.0.1" Target="WebApiDoodle.Net.Http.Formatting 2.0.1" Category="Package Dependency" Bounds="437.429992675781,124.980003356934,386.294982910156,0" />
-    <Link Source="WebApiDoodle 2.0.1" Target="WebApiDoodle.Web 2.0.1" Category="Package Dependency" Bounds="436.368408203125,137.249664306641,149.978637695313,29.0394897460938" />
-    <Link Source="WebApiDoodle.Net.Http 2.0.1" Target="Microsoft.Net.Http 2.0.20710.0" Category="Package Dependency" Bounds="1289.16882324219,239.948852539063,123.799926757813,28.0511474609375" />
-    <Link Source="WebApiDoodle.Net.Http.Formatting 2.0.1" Target="Microsoft.AspNet.WebApi.Client 4.0.20710.0" Category="Package Dependency" Bounds="984.2333984375,137.960006713867,196.625122070313,71.4065551757813" />
-    <Link Source="WebApiDoodle.Web 2.0.1" Target="Microsoft.AspNet.WebApi.Core 4.0.20710.0" Category="Package Dependency" Bounds="729.333557128906,193.960006713867,146.486633300781,28.3310241699219" />
-    <Link Source="WebApiDoodle.Web 2.0.1" Target="WebApiDoodle.Web.Meta 2.0.1" Category="Package Dependency" Bounds="740.219970703125,180.979995727539,109.63671875,0" />
-    <Link Source="test\PingYouePackage.API.Test.Integration" Target="Autofac.WebApi 3.0.0" Category="Installed Package" Bounds="127.231460571289,196.111724853516,184.312606811523,149.715576171875" />
-    <Link Source="test\PingYouePackage.API.Test.Integration" Target="EntityFramework 5.0.0" Category="Installed Package" Bounds="126.05931854248,85.631965637207,209.276039123535,260.195335388184" />
-    <Link Source="test\PingYouePackage.API.Test.Integration" Target="Microsoft.AspNet.WebApi.Core 4.0.20710.0" Category="Installed Package" Bounds="205.216593699291,251.258464935737,648.621342182579,94.5688318171929" />
-    <Link Source="test\PingYouePackage.API.Test.Integration" Target="Moq 4.0.10827" Category="Installed Package" Bounds="166.828772015367,307.561557404274,149.284707719947,38.2657393486562" />
-    <Link Source="test\PingYouePackage.API.Test.Integration" Target="WebApiDoodle.Net.Http.Client.Model 2.0.1" Category="Installed Package" Bounds="143.551970965333,253.81744373952,193.955004164891,92.0098530134098" />
-    <Link Source="test\PingYouePackage.API.Test.Integration" Target="xunit 1.9.1" Category="Installed Package" Bounds="226.010380096436,350.739190868371,101.017868932881,3.86563792789246" />
-    <Link Source="test\PingYourPackage.API.Test" Target="EntityFramework 5.0.0" Category="Installed Package" Bounds="140.320678710938,85.4842224121094,193.897338867188,82.5157775878906" />
-    <Link Source="test\PingYourPackage.API.Test" Target="Moq 4.0.10827" Category="Installed Package" Bounds="141.134613037109,193.960006713867,175.092559814453,84.3389739990234" />
-    <Link Source="test\PingYourPackage.API.Test" Target="WebApiDoodle 2.0.1" Category="Installed Package" Bounds="170.821365356445,139.833099365234,132.37434387207,28.1669006347656" />
-    <Link Source="test\PingYourPackage.API.Test" Target="WebApiDoodle.Net.Http.Client.Model 2.0.1" Category="Installed Package" Bounds="170.821365356445,193.960006713867,132.37434387207,28.1668853759766" />
-    <Link Source="test\PingYourPackage.API.Test" Target="xunit 1.9.1" Category="Installed Package" Bounds="147.15380859375,193.959991455078,197.49365234375,137.262908935547" />
+    <Link Source="Autofac.Mvc4 3.0.0" Target="Autofac 3.0.1" Category="Package Dependency" Bounds="436.985595703125,528.701965332031,222.896667480469,71.2980346679688" />
+    <Link Source="Autofac.WebApi 3.0.0" Target="Autofac 3.0.1" Category="Package Dependency" Bounds="408.642578125,313.959991455078,247.148803710938,186.972198486328" />
+    <Link Source="Autofac.WebApi 3.0.0" Target="Autofac 3.0.2" Category="Package Dependency" Bounds="463.291656494141,300.980010986328,192.276702880859,0" />
+    <Link Source="Autofac.WebApi 3.0.1" Target="Autofac 3.0.2" Category="Package Dependency" Bounds="420.560791015625,318.220275878906,256.390625,137.779724121094" />
+    <Link Source="Client\PingYourPackage.API.Client" Target="WebApiDoodle.Net.Http.Client 2.0.1" Category="Installed Package" Bounds="192.38166809082,556.97998046875,89.9933319091797,0" />
+    <Link Source="Client\PingYourPackage.API.Client.Web" Target="Autofac.Mvc4 3.0.0" Category="Installed Package" Bounds="133.665481567383,630.262878417969,230.990951538086,125.737121582031" />
+    <Link Source="Client\PingYourPackage.API.Client.Web" Target="Microsoft.AspNet.Mvc 4.0.20710.0" Category="Installed Package" Bounds="147.018951416016,781.960021972656,203.691223144531,71.0748901367188" />
+    <Link Source="Client\PingYourPackage.API.Client.Web" Target="Microsoft.AspNet.Web.Optimization 1.0.0" Category="Installed Package" Bounds="205.95166015625,768.97998046875,374.850036621094,0" />
+    <Link Source="Client\PingYourPackage.API.Client.Web" Target="Microsoft.AspNet.WebPages.WebData 2.0.20710.0" Category="Installed Package" Bounds="194.363067626953,739.325805664063,108.604766845703,16.6741943359375" />
+    <Link Source="Client\PingYourPackage.API.Client.Web" Target="Microsoft.jQuery.Unobtrusive.Validation 2.0.20710.0" Category="Installed Package" Bounds="128.823089599609,781.960021972656,216.612091064453,127.403564453125" />
+    <Link Source="Client\PingYourPackage.API.Client.Web" Target="Modernizr 2.5.3" Category="Installed Package" Bounds="137.985763549805,683.194213867188,199.299667358398,72.8057861328125" />
+    <Link Source="Client\PingYourPackage.API.Client.Web" Target="WebApiDoodle.Net.Http.Client 2.0.1" Category="Installed Package" Bounds="126.815811157227,574.877685546875,242.157943725586,181.122314453125" />
+    <Link Source="Microsoft.AspNet.Mvc 4.0.20710.0" Target="Microsoft.AspNet.Razor 2.0.20710.0" Category="Package Dependency" Bounds="496.255004882813,868.97998046875,389.556640625,0" />
+    <Link Source="Microsoft.AspNet.Mvc 4.0.20710.0" Target="Microsoft.AspNet.WebPages 2.0.20710.0" Category="Package Dependency" Bounds="488.631530761719,839.214294433594,119.264770507813,16.7857055664063" />
+    <Link Source="Microsoft.AspNet.Web.Optimization 1.0.0" Target="Microsoft.Web.Infrastructure 1.0.0.0" Category="Package Dependency" Bounds="828.265014648438,761.664367675781,57.2877197265625,2.374267578125" />
+    <Link Source="Microsoft.AspNet.Web.Optimization 1.0.0" Target="WebGrease 1.1.0" Category="Package Dependency" Bounds="794.450561523438,781.960021972656,140.936584472656,21.4166870117188" />
+    <Link Source="Microsoft.AspNet.WebApi 4.0.20710.0" Target="Microsoft.AspNet.WebApi.WebHost 4.0.30506.0" Category="Package Dependency" Bounds="442.519104003906,25.9599990844727,211.738464355469,59.6013946533203" />
+    <Link Source="Microsoft.AspNet.WebApi.Client 4.0.20710.0" Target="Microsoft.Net.Http 2.0.20710.0" Category="Package Dependency" Bounds="1335.98217773438,227.948852539063,123.799926757813,28.0511474609375" />
+    <Link Source="Microsoft.AspNet.WebApi.Client 4.0.20710.0" Target="Newtonsoft.Json 4.5.11" Category="Package Dependency" Bounds="1405.11999511719,268.980010986328,40.7633056640625,0" />
+    <Link Source="Microsoft.AspNet.WebApi.Client 4.0.30506.0" Target="Microsoft.Net.Http 2.0.20710.0" Category="Package Dependency" Bounds="1405.11999511719,212.979995727539,21,0" />
+    <Link Source="Microsoft.AspNet.WebApi.Client 4.0.30506.0" Target="Newtonsoft.Json 4.5.11" Category="Package Dependency" Bounds="1335.98217773438,225.960006713867,123.799926757813,28.0511474609375" />
+    <Link Source="Microsoft.AspNet.WebApi.Core 4.0.20710.0" Target="Microsoft.AspNet.WebApi.Client 4.0.20710.0" Category="Package Dependency" Bounds="1063.50964355469,225.960006713867,141.435424804688,28.275634765625" />
+    <Link Source="Microsoft.AspNet.WebApi.Core 4.0.30506.0" Target="Microsoft.AspNet.WebApi.Client 4.0.30506.0" Category="Package Dependency" Bounds="1031.04650878906,113.959999084473,206.830322265625,82.6986465454102" />
+    <Link Source="Microsoft.AspNet.WebApi.WebHost 4.0.30506.0" Target="Microsoft.AspNet.WebApi.Core 4.0.30506.0" Category="Package Dependency" Bounds="844.893310546875,100.980003356934,21,0" />
+    <Link Source="Microsoft.AspNet.WebApi.WebHost 4.0.30506.0" Target="Microsoft.Web.Infrastructure 1.0.0.0" Category="Package Dependency" Bounds="737.841857910156,113.959999084473,247.110656738281,622.548728942871" />
+    <Link Source="Microsoft.AspNet.WebPages 2.0.20710.0" Target="Microsoft.AspNet.Razor 2.0.20710.0" Category="Package Dependency" Bounds="794.450561523438,837.960021972656,109.817687988281,16.6878662109375" />
+    <Link Source="Microsoft.AspNet.WebPages 2.0.20710.0" Target="Microsoft.Web.Infrastructure 1.0.0.0" Category="Package Dependency" Bounds="764.303344726563,772.017639160156,170.248352050781,39.9823608398438" />
+    <Link Source="Microsoft.AspNet.WebPages.WebData 2.0.20710.0" Target="Microsoft.AspNet.WebPages.Data 2.0.20710.0" Category="Package Dependency" Bounds="539.039978027344,718.3291015625,30.6366577148438,1.176025390625" />
+    <Link Source="Microsoft.jQuery.Unobtrusive.Validation 2.0.20710.0" Target="jQuery.Validation 1.9.0.1" Category="Package Dependency" Bounds="543.17333984375,924.97998046875,82.9066772460938,0" />
+    <Link Source="PingYourPackage.API" Target="Autofac.WebApi 3.0.0" Category="Installed Package" Bounds="138.001022338867,181.960006713867,222.050064086914,102.274826049805" />
+    <Link Source="PingYourPackage.API" Target="EntityFramework 5.0.0" Category="Installed Package" Bounds="147.018951416016,84.9250869750977,203.691223144531,71.0749130249023" />
+    <Link Source="PingYourPackage.API" Target="WebApiDoodle 2.0.1" Category="Installed Package" Bounds="175.888870239258,136.23779296875,147.192031860352,22.5985717773438" />
+    <Link Source="PingYourPackage.API" Target="WebApiDoodle.Net.Http.Client.Model 2.0.1" Category="Installed Package" Bounds="175.893325805664,168.979995727539,480.323532104492,60.4831237792969" />
+    <Link Source="PingYourPackage.API.Model" Target="WebApiDoodle.Net.Http.Client.Model 2.0.1" Category="Installed Package" Bounds="480.808319091797,244.979995727539,95.8650207519531,0" />
+    <Link Source="PingYourPackage.API.WebHost" Target="EntityFramework 5.0.0" Category="Installed Package" Bounds="176.246688842773,25.9599990844727,145.440170288086,28.4194984436035" />
+    <Link Source="PingYourPackage.API.WebHost" Target="Microsoft.AspNet.WebApi 4.0.20710.0" Category="Installed Package" Bounds="201.818328857422,12.9799995422363,75.6533508300781,0" />
+    <Link Source="PingYourPackage.Domain" Target="EntityFramework 5.0.0" Category="Installed Package" Bounds="187.858337402344,68.9800033569336,131.449981689453,0" />
+    <Link Source="WebApiDoodle 2.0.1" Target="WebApiDoodle.Net.Http 2.0.1" Category="Package Dependency" Bounds="456.081573486328,56.9799995422363,725.071746826172,55.0200004577637" />
+    <Link Source="WebApiDoodle 2.0.1" Target="WebApiDoodle.Net.Http.Formatting 2.0.1" Category="Package Dependency" Bounds="449.800018310547,137.960006713867,484.751678466797,115.982345581055" />
+    <Link Source="WebApiDoodle 2.0.1" Target="WebApiDoodle.Web 2.0.1" Category="Package Dependency" Bounds="460.836669921875,131.574966430664,161.243469238281,16.504638671875" />
+    <Link Source="WebApiDoodle.Net.Http 2.0.1" Target="Microsoft.Net.Http 2.0.20710.0" Category="Package Dependency" Bounds="1299.26062011719,69.9599990844727,198.40966796875,125.236122131348" />
+    <Link Source="WebApiDoodle.Net.Http.Client 2.0.1" Target="Microsoft.AspNet.WebApi.Client 4.0.20710.0" Category="Package Dependency" Bounds="501.438323974609,288.411682128906,758.358795166016,268.568298339844" />
+    <Link Source="WebApiDoodle.Net.Http.Client 2.0.1" Target="WebApiDoodle.Net.Http.Client.Model 2.0.1" Category="Package Dependency" Bounds="452.051666259766,263.219116210938,231.652252197266,280.780883789063" />
+    <Link Source="WebApiDoodle.Net.Http.Formatting 2.0.1" Target="Microsoft.AspNet.WebApi.Client 4.0.20710.0" Category="Package Dependency" Bounds="1117.62829589844,268.980010986328,25.64501953125,0" />
+    <Link Source="WebApiDoodle.Web 2.0.1" Target="Microsoft.AspNet.WebApi.Core 4.0.20710.0" Category="Package Dependency" Bounds="776.146911621094,169.960006713867,146.486633300781,28.3310241699219" />
+    <Link Source="WebApiDoodle.Web 2.0.1" Target="WebApiDoodle.Web.Meta 2.0.1" Category="Package Dependency" Bounds="787.033325195313,156.979995727539,109.636657714844,0" />
+    <Link Source="jQuery.Validation 1.9.0.1" Target="jQuery 1.7.1.1" Category="Package Dependency" Bounds="782.986694335938,924.97998046875,160.61328125,0" />
+    <Link Source="test\PingYouePackage.API.Test.Integration" Target="Autofac.WebApi 3.0.1" Category="Installed Package" Bounds="218.70329284668,477.447052001953,101.873947143555,11.3751525878906" />
+    <Link Source="test\PingYouePackage.API.Test.Integration" Target="EntityFramework 5.0.0" Category="Installed Package" Bounds="114.92301940918,86.0620193481445,248.12419128418,401.937980651855" />
+    <Link Source="test\PingYouePackage.API.Test.Integration" Target="Microsoft.AspNet.WebApi.Core 4.0.20710.0" Category="Installed Package" Bounds="219.639999389648,228.258560180664,721.104263305664,280.00715637207" />
+    <Link Source="test\PingYouePackage.API.Test.Integration" Target="Moq 4.0.10827" Category="Installed Package" Bounds="152.091537475586,428.601806640625,193.440048217773,59.398193359375" />
+    <Link Source="test\PingYouePackage.API.Test.Integration" Target="WebApiDoodle.Net.Http.Client 2.0.1" Category="Installed Package" Bounds="176.246688842773,513.960021972656,144.900344848633,28.31396484375" />
+    <Link Source="test\PingYouePackage.API.Test.Integration" Target="xunit 1.9.1" Category="Installed Package" Bounds="135.652603149414,374.000793457031,226.87956237793,113.999206542969" />
+    <Link Source="test\PingYourPackage.API.Test" Target="Autofac.WebApi 3.0.0" Category="Installed Package" Bounds="158.765991210938,237.960006713867,179.995391845703,47.7330169677734" />
+    <Link Source="test\PingYourPackage.API.Test" Target="EntityFramework 5.0.0" Category="Installed Package" Bounds="133.665481567383,86.2628631591797,230.990951538086,125.73713684082" />
+    <Link Source="test\PingYourPackage.API.Test" Target="Moq 4.0.10827" Category="Installed Package" Bounds="129.606674194336,237.960006713867,239.488021850586,157.103408813477" />
+    <Link Source="test\PingYourPackage.API.Test" Target="WebApiDoodle 2.0.1" Category="Installed Package" Bounds="137.965621948242,140.106048583984,196.83610534668,71.8939514160156" />
+    <Link Source="test\PingYourPackage.API.Test" Target="WebApiDoodle.Net.Http.Client.Model 2.0.1" Category="Installed Package" Bounds="188.054992675781,208.744705200195,419.84130859375,22.0009765625" />
+    <Link Source="test\PingYourPackage.API.Test" Target="xunit 1.9.1" Category="Installed Package" Bounds="138.001022338867,237.960006713867,222.050064086914,102.274826049805" />
   </Links>
   <Categories>
     <Category Id="Installed Package" />
@@ -79,8 +119,8 @@
     <Property Id="GroupLabel" DataType="System.String" />
     <Property Id="IsEnabled" DataType="System.Boolean" />
     <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="Layout" DataType="System.String" />
     <Property Id="TargetType" DataType="System.Type" />
-    <Property Id="UseManualLocation" DataType="System.Boolean" />
     <Property Id="Value" DataType="System.String" />
     <Property Id="ValueLabel" DataType="System.String" />
   </Properties>

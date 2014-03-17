@@ -6,17 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingYourPackage.API.Model
-{
+namespace PingYourPackage.API.Model {
 
-    internal static class ShipmentByAffiliateRequestModelExtensions
-    {
+    internal static class ShipmentByAffiliateRequestModelExtensions {
 
-        internal static Shipment ToShipment(this ShipmentByAffiliateRequestModel requestModel, Guid affiliateKey)
-        {
+        internal static Shipment ToShipment(this ShipmentByAffiliateRequestModel requestModel, Guid affiliateKey) {
 
-            return new Shipment
-            {
+            return new Shipment {
                 ShipmentTypeKey = requestModel.ShipmentTypeKey.Value,
                 AffiliateKey = affiliateKey,
                 Price = requestModel.Price.Value,

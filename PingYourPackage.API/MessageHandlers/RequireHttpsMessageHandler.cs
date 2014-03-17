@@ -4,21 +4,17 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PingYourPackage.API.MessageHandlers
-{
+namespace PingYourPackage.API.MessageHandlers {
 
-    public class RequireHttpsMessageHandler : DelegatingHandler
-    {
+    public class RequireHttpsMessageHandler : DelegatingHandler {
 
         protected override Task<HttpResponseMessage> SendAsync(
-            HttpRequestMessage request,
-            CancellationToken cancellationToken)
-        {
+            HttpRequestMessage request, 
+            CancellationToken cancellationToken) {
 
-            if (request.RequestUri.Scheme != Uri.UriSchemeHttps)
-            {
+            if (request.RequestUri.Scheme != Uri.UriSchemeHttps) {
 
-                HttpResponseMessage forbiddenResponse =
+                HttpResponseMessage forbiddenResponse = 
                     request.CreateResponse(HttpStatusCode.Forbidden);
 
                 forbiddenResponse.ReasonPhrase = "SSL Required";

@@ -27,7 +27,7 @@ namespace PingYourPackage.API.Client.Web {
                 ApiClientContext.Create(cfg =>
                     cfg.SetCredentialsFromAppSetting(
                         "Api:AffiliateKey", "Api:Username", "Api:Password")
-                                .ConnectTo("https://localhost:58706"));
+                                .ConnectTo("https://localhost:44306"));
 
             // Register the clients
             builder.Register(c => apiClientContex.GetShipmentsClient())

@@ -4,19 +4,16 @@ using System.Threading;
 using System.Threading.Tasks;
 using WebApiDoodle.Web.MessageHandlers;
 
-namespace PingYourPackage.API.MessageHandlers
-{
+namespace PingYourPackage.API.MessageHandlers {
 
-    public class PingYourPackageAuthHandler :
-        BasicAuthenticationHandler
-    {
+    public class PingYourPackageAuthHandler : 
+        BasicAuthenticationHandler {
 
         protected override Task<IPrincipal> AuthenticateUserAsync(
-            HttpRequestMessage request,
-            string username,
-            string password,
-            CancellationToken cancellationToken)
-        {
+            HttpRequestMessage request, 
+            string username, 
+            string password, 
+            CancellationToken cancellationToken) {
 
             var membershipService = request.GetMembershipService();
 

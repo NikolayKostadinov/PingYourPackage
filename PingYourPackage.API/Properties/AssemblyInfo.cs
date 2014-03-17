@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("PingYourPackage.API")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ITSE")]
+[assembly: AssemblyCompany("Toshiba")]
 [assembly: AssemblyProduct("PingYourPackage.API")]
-[assembly: AssemblyCopyright("Copyright © ITSE 2014")]
+[assembly: AssemblyCopyright("Copyright © Toshiba 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("6396868f-2a03-4b21-a4db-f8f620352a52")]
+[assembly: Guid("a487f9e9-b956-445b-acfa-997feb12a75c")]
 
 // Version information for an assembly consists of the following four values:
 //

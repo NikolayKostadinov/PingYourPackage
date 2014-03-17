@@ -4,14 +4,11 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Dispatcher;
 
-namespace PingYourPackage.API.Config
-{
+namespace PingYourPackage.API.Config {
 
-    public class RouteConfig
-    {
+    public class RouteConfig {
 
-        public static void RegisterRoutes(HttpConfiguration config)
-        {
+        public static void RegisterRoutes(HttpConfiguration config) {
 
             var routes = config.Routes;
 

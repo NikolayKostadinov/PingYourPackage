@@ -7,18 +7,22 @@ using System.Threading.Tasks;
 using WebApiDoodle.Net.Http.Client;
 using WebApiDoodle.Net.Http.Client.Model;
 
-namespace PingYourPackage.API.Client.Clients {
+namespace PingYourPackage.API.Client.Clients
+{
 
-    public class ShipmentsClient : HttpApiClient<ShipmentDto>, IShipmentsClient {
+    public class ShipmentsClient : HttpApiClient<ShipmentDto>, IShipmentsClient
+    {
 
         private const string BaseUriTemplate = "api/affiliates/{key}/shipments";
         private const string BaseUriTemplateForSingle = "api/affiliates/{key}/shipments/{shipmentKey}";
         private readonly string _affiliateKey;
 
         public ShipmentsClient(HttpClient httpClient, string affiliateKey)
-            : base(httpClient, MediaTypeFormatterCollection.Instance) {
+            : base(httpClient, MediaTypeFormatterCollection.Instance)
+        {
 
-            if (string.IsNullOrEmpty(affiliateKey)) {
+            if (string.IsNullOrEmpty(affiliateKey))
+            {
 
                 throw new ArgumentException("The argument 'affiliateKey' is null or empty.", "affiliateKey");
             }
@@ -26,7 +30,8 @@ namespace PingYourPackage.API.Client.Clients {
             _affiliateKey = affiliateKey;
         }
 
-        public async Task<PaginatedDto<ShipmentDto>> GetShipmentsAsync(PaginatedRequestCommand paginationCmd) {
+        public async Task<PaginatedDto<ShipmentDto>> GetShipmentsAsync(PaginatedRequestCommand paginationCmd)
+        {
 
             var parameters = new { key = _affiliateKey, page = paginationCmd.Page, take = paginationCmd.Take };
             var responseTask = base.GetAsync(BaseUriTemplate, parameters);
@@ -34,7 +39,8 @@ namespace PingYourPackage.API.Client.Clients {
             return shipments;
         }
 
-        public async Task<ShipmentDto> GetShipmentAsync(Guid shipmentKey) {
+        public async Task<ShipmentDto> GetShipmentAsync(Guid shipmentKey)
+        {
 
             var parameters = new { key = _affiliateKey, shipmentKey = shipmentKey };
             var responseTask = base.GetSingleAsync(BaseUriTemplateForSingle, parameters);
@@ -42,7 +48,8 @@ namespace PingYourPackage.API.Client.Clients {
             return shipment;
         }
 
-        public async Task<ShipmentDto> AddShipmentAsync(ShipmentByAffiliateRequestModel requestModel) {
+        public async Task<ShipmentDto> AddShipmentAsync(ShipmentByAffiliateRequestModel requestModel)
+        {
 
             var parameters = new { key = _affiliateKey };
             var responseTask = base.PostAsync(BaseUriTemplate, requestModel, parameters);
@@ -50,7 +57,8 @@ namespace PingYourPackage.API.Client.Clients {
             return shipment;
         }
 
-        public async Task<ShipmentDto> UpdateShipmentAsync(Guid shipmentKey, ShipmentByAffiliateUpdateRequestModel requestModel) {
+        public async Task<ShipmentDto> UpdateShipmentAsync(Guid shipmentKey, ShipmentByAffiliateUpdateRequestModel requestModel)
+        {
 
             var parameters = new { key = _affiliateKey, shipmentKey = shipmentKey };
             var responseTask = base.PutAsync(BaseUriTemplateForSingle, requestModel, parameters);
@@ -58,8 +66,9 @@ namespace PingYourPackage.API.Client.Clients {
             return shipment;
         }
 
-        public async Task RemoveShipmentAsync(Guid shipmentKey) {
-            
+        public async Task RemoveShipmentAsync(Guid shipmentKey)
+        {
+
             var parameters = new { key = _affiliateKey, shipmentKey = shipmentKey };
             var responseTask = base.DeleteAsync(BaseUriTemplateForSingle, parameters);
             await HandleResponseAsync(responseTask);
@@ -67,11 +76,14 @@ namespace PingYourPackage.API.Client.Clients {
 
         // private helpers
 
-        private async Task<TResult> HandleResponseAsync<TResult>(Task<HttpApiResponseMessage<TResult>> responseTask) {
+        private async Task<TResult> HandleResponseAsync<TResult>(Task<HttpApiResponseMessage<TResult>> responseTask)
+        {
 
-            using (var apiResponse = await responseTask) {
+            using (var apiResponse = await responseTask)
+            {
 
-                if (apiResponse.IsSuccess) {
+                if (apiResponse.IsSuccess)
+                {
 
                     return apiResponse.Model;
                 }
@@ -80,18 +92,22 @@ namespace PingYourPackage.API.Client.Clients {
             }
         }
 
-        private async Task HandleResponseAsync(Task<HttpApiResponseMessage> responseTask) {
+        private async Task HandleResponseAsync(Task<HttpApiResponseMessage> responseTask)
+        {
 
-            using (var apiResponse = await responseTask) {
+            using (var apiResponse = await responseTask)
+            {
 
-                if (!apiResponse.IsSuccess) {
+                if (!apiResponse.IsSuccess)
+                {
 
                     throw GetHttpApiRequestException(apiResponse);
                 }
             }
         }
 
-        private HttpApiRequestException GetHttpApiRequestException(HttpApiResponseMessage apiResponse) {
+        private HttpApiRequestException GetHttpApiRequestException(HttpApiResponseMessage apiResponse)
+        {
 
             return new HttpApiRequestException(
                 string.Format(ErrorMessages.HttpRequestErrorFormat, (int)apiResponse.Response.StatusCode, apiResponse.Response.ReasonPhrase),

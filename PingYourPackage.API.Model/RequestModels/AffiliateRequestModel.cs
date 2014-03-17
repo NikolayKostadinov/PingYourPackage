@@ -5,11 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingYourPackage.API.Model.RequestModels
-{
+namespace PingYourPackage.API.Model.RequestModels {
 
-    public class AffiliateRequestModel : AffiliateBaseRequestModel
-    {
+    public class AffiliateRequestModel : AffiliateBaseRequestModel {
 
         [Required]
         public Guid? UserKey { get; set; }

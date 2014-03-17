@@ -67,9 +67,9 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserInRole.cs" />
     <Compile Include="Entities\Extentions\UserRepositoryExtensions.cs" />
-    <Compile Include="Migrations\201403141100500_FinalMigration.cs" />
-    <Compile Include="Migrations\201403141100500_FinalMigration.Designer.cs">
-      <DependentUpon>201403141100500_FinalMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201403171209360_The Final.cs" />
+    <Compile Include="Migrations\201403171209360_The Final.Designer.cs">
+      <DependentUpon>201403171209360_The Final.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,8 +89,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201403141100500_FinalMigration.resx">
-      <DependentUpon>201403141100500_FinalMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201403171209360_The Final.resx">
+      <DependentUpon>201403171209360_The Final.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

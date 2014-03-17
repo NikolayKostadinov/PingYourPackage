@@ -1,14 +1,11 @@
 ﻿using PingYourPackage.API.Model.Validation;
 
-namespace PingYourPackage.API.Model.RequestCommands
-{
+namespace PingYourPackage.API.Model.RequestCommands {
 
-    public class PaginatedRequestCommand : IRequestCommand
-    {
+    public class PaginatedRequestCommand : IRequestCommand {
 
         public PaginatedRequestCommand() { }
-        public PaginatedRequestCommand(int page, int take)
-        {
+        public PaginatedRequestCommand(int page, int take) {
 
             Page = page;
             Take = take;

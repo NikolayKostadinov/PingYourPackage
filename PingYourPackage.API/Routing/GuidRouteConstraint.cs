@@ -8,11 +8,9 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Routing;
 
-namespace PingYourPackage.API.Routing
-{
+namespace PingYourPackage.API.Routing {
 
-    public class GuidRouteConstraint : IHttpRouteConstraint
-    {
+    public class GuidRouteConstraint : IHttpRouteConstraint {
 
         private const string _format = "D";
 
@@ -21,11 +19,9 @@ namespace PingYourPackage.API.Routing
             IHttpRoute route,
             string parameterName,
             IDictionary<string, object> values,
-            HttpRouteDirection routeDirection)
-        {
+            HttpRouteDirection routeDirection) {
 
-            if (values[parameterName] != RouteParameter.Optional)
-            {
+            if (values[parameterName] != RouteParameter.Optional) {
 
                 object value;
                 values.TryGetValue(parameterName, out value);

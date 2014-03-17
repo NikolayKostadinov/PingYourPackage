@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using WebApiDoodle.Net.Http.Client.Model;
 
-namespace PingYourPackage.API.Model.Dtos
-{
-
-    public class ShipmentDto : IDto
-    {
+namespace PingYourPackage.API.Model.Dtos {
+    
+    public class ShipmentDto : IDto {
 
         public Guid Key { get; set; }
         public Guid AffiliateKey { get; set; }

@@ -6,14 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingYourPackage.API.Model
-{
+namespace PingYourPackage.API.Model {
+    
+    internal static class ShipmentByAffiliateUpdateRequestModelExtensions {
 
-    internal static class ShipmentByAffiliateUpdateRequestModelExtensions
-    {
-
-        internal static Shipment ToShipment(this ShipmentByAffiliateUpdateRequestModel requestModel, Shipment existingShipment)
-        {
+        internal static Shipment ToShipment(this ShipmentByAffiliateUpdateRequestModel requestModel, Shipment existingShipment) {
 
             existingShipment.Price = requestModel.Price.Value;
             existingShipment.ReceiverName = requestModel.ReceiverName;

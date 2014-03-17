@@ -6,22 +6,28 @@ using System.Threading.Tasks;
 using WebApiDoodle.Net.Http.Client;
 using WebApiDoodle.Net.Http.Client.Model;
 
-namespace PingYourPackage.API.Client.Clients {
+namespace PingYourPackage.API.Client.Clients
+{
 
-    public class ShipmentTypesClient : HttpApiClient<ShipmentTypeDto>, IShipmentTypesClient {
+    public class ShipmentTypesClient : HttpApiClient<ShipmentTypeDto>, IShipmentTypesClient
+    {
 
         private const string BaseUriTemplate = "api/shipmenttypes";
         private const string BaseUriTemplateForSingle = "api/shipmenttypes/{key}";
 
         public ShipmentTypesClient(HttpClient httpClient)
-            : base(httpClient, MediaTypeFormatterCollection.Instance) {
+            : base(httpClient, MediaTypeFormatterCollection.Instance)
+        {
         }
 
-        public async Task<PaginatedDto<ShipmentTypeDto>> GetShipmentTypesAsync(PaginatedRequestCommand paginationCmd) {
+        public async Task<PaginatedDto<ShipmentTypeDto>> GetShipmentTypesAsync(PaginatedRequestCommand paginationCmd)
+        {
 
-            using (var apiResponse = await base.GetAsync(BaseUriTemplate, paginationCmd)) {
+            using (var apiResponse = await base.GetAsync(BaseUriTemplate, paginationCmd))
+            {
 
-                if (apiResponse.IsSuccess) {
+                if (apiResponse.IsSuccess)
+                {
 
                     return apiResponse.Model;
                 }
@@ -32,12 +38,15 @@ namespace PingYourPackage.API.Client.Clients {
             }
         }
 
-        public async Task<ShipmentTypeDto> GetShipmentTypeAsync(Guid shipmentTypeKey) { 
+        public async Task<ShipmentTypeDto> GetShipmentTypeAsync(Guid shipmentTypeKey)
+        {
 
             var parameters = new { key = shipmentTypeKey };
-            using (var apiResponse = await base.GetSingleAsync(BaseUriTemplateForSingle, parameters)) {
+            using (var apiResponse = await base.GetSingleAsync(BaseUriTemplateForSingle, parameters))
+            {
 
-                if (apiResponse.IsSuccess) {
+                if (apiResponse.IsSuccess)
+                {
 
                     return apiResponse.Model;
                 }

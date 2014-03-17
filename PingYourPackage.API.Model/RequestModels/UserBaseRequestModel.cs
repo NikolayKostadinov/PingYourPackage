@@ -5,11 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingYourPackage.API.Model.RequestModels
-{
-
-    public abstract class UserBaseRequestModel
-    {
+namespace PingYourPackage.API.Model.RequestModels {
+    
+    public abstract class UserBaseRequestModel {
 
         [Required]
         [StringLength(50)]

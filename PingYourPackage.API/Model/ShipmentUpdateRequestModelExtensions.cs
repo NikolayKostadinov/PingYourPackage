@@ -6,15 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingYourPackage.API.Model
-{
+namespace PingYourPackage.API.Model {
 
-    internal static class ShipmentUpdateRequestModelExtensions
-    {
+    internal static class ShipmentUpdateRequestModelExtensions {
 
         internal static Shipment ToShipment(
-            this ShipmentUpdateRequestModel requestModel, Shipment existingShipment)
-        {
+            this ShipmentUpdateRequestModel requestModel, Shipment existingShipment) {
 
             existingShipment.Price = requestModel.Price.Value;
             existingShipment.ReceiverName = requestModel.ReceiverName;

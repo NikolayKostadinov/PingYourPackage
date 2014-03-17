@@ -5,13 +5,13 @@ namespace PingYourPackage.Domain.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    public sealed partial class FinalMigration : IMigrationMetadata
+    public sealed partial class TheFinal : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FinalMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(TheFinal));
         
         string IMigrationMetadata.Id
         {
-            get { return "201403141100500_FinalMigration"; }
+            get { return "201403171209360_The Final"; }
         }
         
         string IMigrationMetadata.Source

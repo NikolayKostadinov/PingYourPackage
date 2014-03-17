@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingYourPackage.API.Model.RequestModels
-{
-
-    public class ShipmentUpdateRequestModel : ShipmentBaseRequestModel
-    {
+namespace PingYourPackage.API.Model.RequestModels {
+    
+    public class ShipmentUpdateRequestModel : ShipmentBaseRequestModel {
 
     }
 }

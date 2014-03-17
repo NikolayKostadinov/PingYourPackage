@@ -11,16 +11,13 @@ using System.Web.Http;
 using System.Web.Http.Dispatcher;
 using System.Web.Http.Routing;
 
-namespace PingYourPackage.API.Dispatcher
-{
+namespace PingYourPackage.API.Dispatcher {
 
-    public class AffiliateShipmentsDispatcher : DelegatingHandler
-    {
+    public class AffiliateShipmentsDispatcher : DelegatingHandler {
 
         protected override Task<HttpResponseMessage> SendAsync(
-            HttpRequestMessage request,
-            CancellationToken cancellationToken)
-        {
+            HttpRequestMessage request, 
+            CancellationToken cancellationToken) {
 
             // We know at this point that the {key} route variable has 
             // been supplied. Otherwise, we wouldn't be here. So, just get it.
@@ -28,8 +25,7 @@ namespace PingYourPackage.API.Dispatcher
             Guid affiliateKey = Guid.ParseExact(routeData.Values["key"].ToString(), "D");
 
             IShipmentService shipmentService = request.GetShipmentService();
-            if (shipmentService.GetAffiliate(affiliateKey) == null)
-            {
+            if (shipmentService.GetAffiliate(affiliateKey) == null) {
 
                 return Task.FromResult(
                     request.CreateResponse(HttpStatusCode.NotFound));

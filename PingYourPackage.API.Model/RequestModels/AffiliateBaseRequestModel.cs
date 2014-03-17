@@ -5,11 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PingYourPackage.API.Model.RequestModels
-{
-
-    public abstract class AffiliateBaseRequestModel
-    {
+namespace PingYourPackage.API.Model.RequestModels {
+    
+    public abstract class AffiliateBaseRequestModel {
 
         [Required]
         [StringLength(50)]

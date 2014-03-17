@@ -7,15 +7,12 @@ using System.Web.Security;
 using System.Web.SessionState;
 using PingYourPackage.API.Config;
 
-namespace PingYourPackage.API.WebHost
-{
+namespace PingYourPackage.API.WebHost {
 
-    public class Global : System.Web.HttpApplication
-    {
+    public class Global : System.Web.HttpApplication {
 
-        protected void Application_Start(object sender, EventArgs e)
-        {
-
+        protected void Application_Start(object sender, EventArgs e) {
+            
             var config = GlobalConfiguration.Configuration;
 
             RouteConfig.RegisterRoutes(config);

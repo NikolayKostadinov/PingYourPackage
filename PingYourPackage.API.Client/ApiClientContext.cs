@@ -78,7 +78,8 @@ namespace PingYourPackage.API.Client {
             _httpClient.Value.BaseAddress = BaseUri;
 
             // Set default headers
-            _httpClient.Value.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", AuthorizationValue);
+            _httpClient.Value.DefaultRequestHeaders.Authorization = 
+                new AuthenticationHeaderValue("Basic", AuthorizationValue);
         }
     }
 }

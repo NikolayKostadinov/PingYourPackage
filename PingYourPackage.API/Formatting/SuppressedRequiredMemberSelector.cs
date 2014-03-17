@@ -1,15 +1,12 @@
 ﻿using System.Net.Http.Formatting;
 using System.Reflection;
 
-namespace PingYourPackage.API.Formatting
-{
+namespace PingYourPackage.API.Formatting {
 
     public class SuppressedRequiredMemberSelector
-        : IRequiredMemberSelector
-    {
+        : IRequiredMemberSelector {
 
-        public bool IsRequiredMember(MemberInfo member)
-        {
+        public bool IsRequiredMember(MemberInfo member) {
 
             return false;
         }

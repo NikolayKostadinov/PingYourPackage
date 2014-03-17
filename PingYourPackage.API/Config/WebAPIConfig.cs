@@ -11,14 +11,11 @@ using System.Web.Http.Validation;
 using System.Web.Http.Validation.Providers;
 using WebApiDoodle.Web.Filters;
 
-namespace PingYourPackage.API.Config
-{
+namespace PingYourPackage.API.Config {
 
-    public class WebAPIConfig
-    {
+    public class WebAPIConfig {
 
-        public static void Configure(HttpConfiguration config)
-        {
+        public static void Configure(HttpConfiguration config) {
 
             // Message Handlers
             config.MessageHandlers.Add(new RequireHttpsMessageHandler());
@@ -26,7 +23,7 @@ namespace PingYourPackage.API.Config
 
             // Formatters
             var jqueryFormatter = config.Formatters.FirstOrDefault(
-                x => x.GetType() ==
+                x => x.GetType() == 
                     typeof(JQueryMvcFormUrlEncodedFormatter));
 
             config.Formatters.Remove(
@@ -35,10 +32,9 @@ namespace PingYourPackage.API.Config
             config.Formatters.Remove(jqueryFormatter);
 
             // Suppressing the IRequiredMemberSelector for all formatters
-            foreach (var formatter in config.Formatters)
-            {
+            foreach (var formatter in config.Formatters) {
 
-                formatter.RequiredMemberSelector =
+                formatter.RequiredMemberSelector = 
                     new SuppressedRequiredMemberSelector();
             }
 
@@ -50,25 +46,25 @@ namespace PingYourPackage.API.Config
             // If ExcludeMatchOnTypeOnly is true then we don't match on type only which means
             // that we return null if we can't match on anything in the request. This is useful
             // for generating 406 (Not Acceptable) status codes.
-            config.Services.Replace(typeof(IContentNegotiator),
+            config.Services.Replace(typeof(IContentNegotiator), 
                 new DefaultContentNegotiator(excludeMatchOnTypeOnly: true));
 
             // Remove all the validation providers 
             // except for DataAnnotationsModelValidatorProvider
-            config.Services.RemoveAll(typeof(ModelValidatorProvider),
+            config.Services.RemoveAll(typeof(ModelValidatorProvider), 
                 validator => !(validator is DataAnnotationsModelValidatorProvider));
 
             // ParameterBindingRules
 
             // Any complex type parameter which is Assignable From 
             // IRequestCommand will be bound from the URI
-            config.ParameterBindingRules.Insert(0, descriptor =>
+            config.ParameterBindingRules.Insert(0, descriptor => 
                 typeof(IRequestCommand).IsAssignableFrom(descriptor.ParameterType)
                     ? new FromUriAttribute().GetBinding(descriptor) : null);
 
             // If the parameter type is IPrincipal,
             // use PrincipalParameterBinding
-            config.ParameterBindingRules.Add(typeof(IPrincipal),
+            config.ParameterBindingRules.Add(typeof(IPrincipal), 
                 descriptor => new PrincipalParameterBinding(descriptor));
         }
     }
