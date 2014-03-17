@@ -22,6 +22,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PingYouePackage.API.Test.In
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{EA4290F7-D8B9-4A01-88A3-2683B3FC036D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{475B5227-AE75-40F7-8A3A-29781C70AE6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PingYourPackage.API.Client", "PingYourPackage.API.Client\PingYourPackage.API.Client.csproj", "{52D12825-DE94-43C0-BF50-48CB2179A9B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PingYourPackage.API.Client.Web", "PingYourPackage.API.Client.Web\PingYourPackage.API.Client.Web.csproj", "{06F852B9-8EA9-470D-A9B7-335C477B29EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +58,14 @@ Global
 		{4B20CDF7-31E4-4851-A813-8F9661992941}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B20CDF7-31E4-4851-A813-8F9661992941}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B20CDF7-31E4-4851-A813-8F9661992941}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52D12825-DE94-43C0-BF50-48CB2179A9B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52D12825-DE94-43C0-BF50-48CB2179A9B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52D12825-DE94-43C0-BF50-48CB2179A9B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52D12825-DE94-43C0-BF50-48CB2179A9B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06F852B9-8EA9-470D-A9B7-335C477B29EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06F852B9-8EA9-470D-A9B7-335C477B29EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06F852B9-8EA9-470D-A9B7-335C477B29EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06F852B9-8EA9-470D-A9B7-335C477B29EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,5 +73,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{4B20CDF7-31E4-4851-A813-8F9661992941} = {EA4290F7-D8B9-4A01-88A3-2683B3FC036D}
 		{F5D7CFD6-0A32-4F66-825C-2148812A7C90} = {EA4290F7-D8B9-4A01-88A3-2683B3FC036D}
+		{52D12825-DE94-43C0-BF50-48CB2179A9B5} = {475B5227-AE75-40F7-8A3A-29781C70AE6C}
+		{06F852B9-8EA9-470D-A9B7-335C477B29EA} = {475B5227-AE75-40F7-8A3A-29781C70AE6C}
 	EndGlobalSection
 EndGlobal

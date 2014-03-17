@@ -54,6 +54,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WebApiDoodle.Net.Http.Client">
+      <HintPath>..\packages\WebApiDoodle.Net.Http.Client.2.0.1\lib\net40\WebApiDoodle.Net.Http.Client.dll</HintPath>
+    </Reference>
     <Reference Include="WebApiDoodle.Net.Http.Client.Model">
       <HintPath>..\PingYourPackage.API.WebHost\bin\WebApiDoodle.Net.Http.Client.Model.dll</HintPath>
     </Reference>
